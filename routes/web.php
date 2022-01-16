@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+Route::get('/login', function () {
+    return view('dashboard');
+});
+
 //peminjaman
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);
 Route::post('/insertPeminjaman', [PeminjamanController::class, 'insertPeminjaman'])->name('insertPeminjaman');
