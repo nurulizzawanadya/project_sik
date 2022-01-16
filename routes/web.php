@@ -8,9 +8,13 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get('/login', function () {
+Route::get('/register', function () {
     return view('dashboard');
 });
+
+// Route::get('/login', function () {
+//     return view('dashboard');
+// });
 
 //peminjaman
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);
