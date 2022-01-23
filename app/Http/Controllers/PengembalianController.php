@@ -28,32 +28,32 @@ class PengembalianController extends Controller
             'tgl_kembali' => Carbon::now(),
             'denda' => $post->denda,
         ]);
-        $pengembalian = Pengembalian::findorFail($data->id);
+        $pengembalian = Pengembalian::findOrFail($data->id);
         $pengembalian->id_pengembalian = 'kembali'. $data->id;
         $pengembalian->save();
         Peminjaman::where('id_peminjaman', $id_peminjaman)->delete();
-        // DetailPeminjaman::where('id_peminjaman', $id_peminjaman)->delete();
-        if($post->no_isbn != 0){
-            if(!empty($post->id_isbn1)){
-                DB::table('detail_pengembalian')->insert([
-                    'id_pengembalian' => $data->id_pengembalian,
-                    'no_isbn' => $post->id_isbn1,
-                ]);
-            }
-            if(!empty($post->id_isbn2)){
-                DB::table('detail_pengembalian')->insert([
-                    'id_pengembalian' => $pengembalian . '' . $data->id,
-                    'no_isbn' => $post->id_isbn2,
-                ]);
-            }
-            if(!empty($post->id_isbn3)){
-                DB::table('detail_pengembalian')->insert([
-                    'id_pengembalian' => $pengembalian . '' . $data->id,
-                    'no_isbn' => $post->id_isbn3,
-                ]);
-            }
+        DetailPeminjaman::where('id_peminjaman', $id_peminjaman)->delete();
+        // if($post->no_isbn != 0){
+        //     if(!empty($post->id_isbn1)){
+        //         DB::table('detail_pengembalian')->insert([
+        //             'id_pengembalian' => $data->id_pengembalian,
+        //             'no_isbn' => $post->id_isbn1,
+        //         ]);
+        //     }
+        //     if(!empty($post->id_isbn2)){
+        //         DB::table('detail_pengembalian')->insert([
+        //             'id_pengembalian' => $pengembalian . '' . $data->id,
+        //             'no_isbn' => $post->id_isbn2,
+        //         ]);
+        //     }
+        //     if(!empty($post->id_isbn3)){
+        //         DB::table('detail_pengembalian')->insert([
+        //             'id_pengembalian' => $pengembalian . '' . $data->id,
+        //             'no_isbn' => $post->id_isbn3,
+        //         ]);
+        //     }
             
-        }
+        // }
         
         // if($data->id >= 1 && $data->id <= 10) $pengembalian = 'pgmbn000';
         // elseif($data->id >= 10 && $data->id <= 100) $pengembalian = 'pmn00';
