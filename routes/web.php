@@ -25,6 +25,8 @@ Route::get('/scan', function () {
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);
 Route::post('/insertPeminjaman', [PeminjamanController::class, 'insertPeminjaman'])->name('insertPeminjaman');
 Route::get('/edit-peminjaman/{id}', [PeminjamanController::class, 'edit'])->name('editpinjam');
+
+Route::get('/reset', [PeminjamanController::class, 'reset']);
 //detail-peminjaman
 Route::get('/detail-peminjaman/{id_peminjaman}', [DetailPeminjamanController::class, 'index']);
 Route::post('/insertDetail', [DetailPeminjamanController::class, 'insertDetail'])->name('insertDetail');
@@ -32,3 +34,4 @@ Route::post('/insertDetail', [DetailPeminjamanController::class, 'insertDetail']
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
