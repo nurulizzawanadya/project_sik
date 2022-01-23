@@ -3,8 +3,10 @@
 @section('title', 'Peminjaman')
 
 @section('css_custom')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-<link rel="stylesheet" href="{{ asset('asset/node_modules/select2/dist/css/select2.min.css') }}">
+{{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"> --}}
+{{-- <link rel="stylesheet" href="{{ asset('asset/node_modules/select2/dist/css/select2.min.css') }}"> --}}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('breadcrumb')
@@ -62,6 +64,7 @@
                             <th class="text-center" scope="col">Perpanjangan</th>
                             <th class="text-center" scope="col">Nama Petugas</th>
                             <th class="text-center" scope="col">Detail</th>
+                            <th class="text-center" scope="col">Pengembalian</th>
                             <th class="text-center" scope="col">Action</th>
                         </tr>
                     </thead>
@@ -82,7 +85,10 @@
                                 <a href="/detail-peminjaman/{{ $data->id_peminjaman }}" class="btn btn-icon btn-success">Detail Peminjaman</a>
                             </td>
                             <td>
-                                <a href='edit-peminjaman/{{ $data->id_peminjaman }}' class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+                                <a href="/cek-pengembalian/{{ $data->id_peminjaman }}" class="btn btn-icon btn-warning">Dikembalikan</a>
+                            </td>
+                            <td>
+                                <a href="{{route('editpinjam', ['id' => $data->id_peminjaman])}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
                                 <a href='/delete/{{ $data->id_peminjaman }}' class="btn btn-icon btn-danger"><i class="fas fa-times"></i></a>
                             </td>
                         </tr>
@@ -95,7 +101,7 @@
 </div>
 @endsection
 
-<div class="modal fade" tabindex="-3" role="dialog" id="exampleModal" aria-hidden="true">
+<div class="modal fade" role="dialog" id="exampleModal" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -105,13 +111,13 @@
                 </button>
             </div>
             <form action="{{ route('insertPeminjaman') }}" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                @csrf
                 <div class="modal-body">
                     <input id="id_peminjaman" type="hidden" class="form-control " name="id_peminjaman"> 
                     <div class="form-group">
                         <label>Nama Anggota</label>
                             <div class="col-sm-12">
-                                <select class="form-control select2" name="id_anggota">
+                                <select class="form-control js-example-basic-single" name="id_anggota">
                                     <option value="">peminjam</option>
                                     @foreach($id as $anggota)   
                                     <option value="{{ $anggota->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
@@ -124,22 +130,25 @@
                             </span>
                             @enderror
                     </div>
+                    @for($i = 1; $i<=3; $i++)
                     <div class="form-group">
-                        <label>Nama Petugas</label>
+                        <label>Judul Buku {{$i}}</label>
                             <div class="col-sm-12">
-                                <select class="form-control select2" name="id_petugas">
-                                    <option value="">petugas</option>
-                                    @foreach($id_2 as $petugas)   
-                                    <option value="{{ $petugas->id_petugas }}">{{ $petugas->nama_petugas }}</option>
+                                <select class="form-control js-example-basic-single" name="id_isbn{{$i}}">
+                                    <option value="">No. ISBN - Judul Buku</option>
+                                    @foreach($buku as $a)   
+                                    <option value="{{ $a->no_isbn }}">{{$a->no_isbn }} - {{ $a->judul_buku }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            @error('id_petugas')
+                            @error('id_isbn{{$i}}')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                    </div> 
+                    </div>
+                    @endfor 
+                    
                     <input id="created_at" type="hidden" class="form-control" name="created_at">
                     <input id="perpanjangan" type="hidden" class="form-control" name="perpanjangan">
                     <div class="form-group">
@@ -171,13 +180,18 @@
 </script>
 
 @section('script')
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-<script src="{{ asset('assets/node_modules/select2/dist/js/select2.full.min.js') }} "></script>
+{{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script> --}}
+{{-- <script src="{{ asset('assets/node_modules/js-example-basic-single/dist/js/select2.full.min.js') }} "></script> --}}
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
 $(document).ready( function () {
     $('#id').DataTable();
-    $('#select2').select2();
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
 } );
 
 </script>

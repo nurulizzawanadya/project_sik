@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Models\DetailPeminjaman;
+use App\Models\Peminjaman;
 
 class DetailPeminjamanController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     public function index($id)
     {
         $peminjaman = DB::table('peminjaman')->where('id_peminjaman', $id)->get();
@@ -35,5 +42,25 @@ class DetailPeminjamanController extends Controller
         ]);
         
         return redirect('/detail-peminjaman/'.$request->id_peminjaman);
+    }
+
+    public function cek($id){
+        $data = Peminjaman::with('anggota')->where('id_peminjaman', $id)->first();
+        $peminjaman = DetailPeminjaman::where('id_peminjaman', $id)->get();
+        $banyak_buku = DetailPeminjaman::with('peminjaman', 'buku')->where('id_peminjaman', $id)->count();
+        $deadline = Carbon::parse($data->tgl_wajib_kembali);
+        $today = Carbon::now();
+        if($today > $deadline) $length = $deadline->diffInDays($today);
+        else $length = 0;
+        $denda = $length * 1000;
+
+        view()->share([
+            'data2' => $data,
+            'data' => $peminjaman,
+            'denda' => $denda,
+            'byk_buku' => $banyak_buku
+        ]);
+
+        return view('pengembalian.detail-pengembalian');
     }
 }
