@@ -7,8 +7,6 @@
 
 @section('content')
 <div class="section-body">
-    <!-- <h2 class="section-title">Halaman Admin</h2> -->
-    <!-- <p class="section-lead">This page is just an example for you to create your own page.</p> -->
     <div class="card">
         <div class="card-header">
             <h4>Example Card</h4>
@@ -37,9 +35,6 @@
                             <div class="card-header">
                                 <h4>Anggota</h4>
                             </div>
-                            <!-- <div class="card-body">
-                                42
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -52,9 +47,6 @@
                             <div class="card-header">
                                 <h4>Buku</h4>
                             </div>
-                            <!-- <div class="card-body">
-                                1,201
-                            </div> -->
                         </div>
                     </div>
                 </div>

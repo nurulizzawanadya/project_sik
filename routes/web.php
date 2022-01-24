@@ -7,8 +7,12 @@ use App\Http\Controllers\DetailPeminjamanController;
 use Carbon\Carbon;
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('user/dashboard-user');
 })->name('/');
+
+Route::get('/halaman-admin', function () {
+    return view('dashboard');
+})->name('/halaman-admin');
 
 // Route::get('/cek/{id}', function () {
 //     return dd(Carbon::now())
