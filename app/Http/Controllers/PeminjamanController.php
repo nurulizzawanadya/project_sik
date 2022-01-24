@@ -118,7 +118,7 @@ class PeminjamanController extends Controller
         $data->perpanjangan = $request->perpanjangan;
         $tgl = "$data->tgl_wajib_kembali";
         if($request->perpanjangan == 1)
-            $data->tgl_wajib_kembali = date('Y-m-d', strtotime($Date. ' + 3 days'));
+            $data->tgl_wajib_kembali = date('Y-m-d', strtotime($tgl. ' + 3 days'));
         
         $data->save();
         session()->flash('berhasil', 'Perpanjangan Berhasil Diupdate');
