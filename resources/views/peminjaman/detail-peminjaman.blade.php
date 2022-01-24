@@ -55,7 +55,6 @@
                         <tr>
                             <th class="text-center" scope="col">ID Peminjaman</th>
                             <th class="text-center" scope="col">Buku</th>
-                            <th class="text-center" scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,9 +62,6 @@
                         <tr class="text-center">
                             <td>{{ $data->id_peminjaman }}</td>
                             <td>{{ $data->judul_buku }}</td>
-                            <td>
-                                <a href="#" class="btn btn-icon btn-success">Dikembalikan</a>
-                            </td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -62,7 +62,7 @@ class PengembalianController extends Controller
         // // dd($pengembalian . '' . $data->id);
 
         
-        session()->flash('berhasil', 'Data Berhasil Ditambahkan');
+        session()->flash('berhasil', 'Buku Dikembalikan');
         // return redirect('/detail-pengembalian/'.$post->id_pengembalian);
         return redirect('/peminjaman');
     }

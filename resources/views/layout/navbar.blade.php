@@ -5,14 +5,6 @@
         <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
     </div>
     <div class="nav-collapse">
-        <!-- <a class="sidebar-gone-show nav-collapse-toggle nav-link" href="#">
-        <i class="fas fa-ellipsis-v"></i>
-        </a>
-        <ul class="navbar-nav">
-        <li class="nav-item active"><a href="#" class="nav-link">Application</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Report Something</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Server Status</a></li>
-        </ul> -->
     </div>
     <form class="form-inline ml-auto">
         <ul class="navbar-nav">
@@ -22,7 +14,7 @@
         </ul>
     </form>
     <ul class="navbar-nav navbar-right">
-        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
+        <!-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
         <div class="dropdown-menu dropdown-list dropdown-menu-right">
             <div class="dropdown-header">Messages
             <div class="float-right">
@@ -146,11 +138,11 @@
             <a href="#">View All <i class="fas fa-chevron-right"></i></a>
             </div>
         </div>
-        </li>
+        </li> -->
         @guest
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
+            <div class="d-sm-none d-lg-inline-block">Hi, User!</div></a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title">Logged in 5 min ago</div>
                 <a href="features-profile.html" class="dropdown-item has-icon">
