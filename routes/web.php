@@ -43,6 +43,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/clear-cache', function() {
     Artisan::call('config:clear');
     Artisan::call('cache:clear');
-    return redirect()->route('home')->with('toast_success', 'Cache Berhasil dihapus!');
+    echo "cahce cleared!";
 })->name('clear-cache');
 
