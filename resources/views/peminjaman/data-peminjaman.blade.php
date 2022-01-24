@@ -77,7 +77,9 @@
                             <td>{{ $data->tgl_wajib_kembali }}</td>
                             <td>
                                 <a class="btn btn-info" href="" data-toggle="modal" data-keyboard="false" data-backdrop="false" data-target="#edit_perpanjangan{{$data->id}}">
-                                    {{ $data->perpanjangan }}
+                                    @if($data->perpanjangan == 0) Tidak Diperpanjangan
+                                    @else Diperpanjang
+                                    @endif
                                 </a>
                             </td>
                             <td>{{ $data->nama_petugas }}</td>
