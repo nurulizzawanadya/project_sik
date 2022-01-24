@@ -101,8 +101,9 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             </button>
                             </div>
+                            <form method="POST" action="{{route('update.perpanjangan', ['id' => $data->id])}}" enctype="multipart/form-data">
                             <div class="modal-body">
-                                <form method="POST" action="{{route('update.perpanjangan', ['id' => $data->id])}}" enctype="multipart/form-data">
+                                
                                     @csrf
                                     {{method_field('PUT')}}
                                     <div class="form-group">
@@ -124,12 +125,14 @@
                                         </div>
                                     </div>
 
-                                </form>
+                               
                             </div>
                             <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Update Perpanjangan</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             {{-- <a href="/user/profile/edit" class="btn btn-primary">Edit Profil</a> --}}
                             </div>
+                        </form>
                             </div>
                             </div>
                         </div>
