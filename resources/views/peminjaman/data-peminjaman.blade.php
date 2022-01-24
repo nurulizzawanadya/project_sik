@@ -76,9 +76,9 @@
                             <td>{{ $data->created_at }}</td>
                             <td>{{ $data->tgl_wajib_kembali }}</td>
                             <td>
-                                <div class="badge badge-info">
+                                <a class="btn btn-info" href="" data-toggle="modal" data-keyboard="false" data-backdrop="false" data-target="#edit_perpanjangan{{$data->id}}">
                                     {{ $data->perpanjangan }}
-                                </div>
+                                </a>
                             </td>
                             <td>{{ $data->nama_petugas }}</td>
                             <td>
@@ -92,6 +92,48 @@
                                 <a href='/delete/{{ $data->id_peminjaman }}' class="btn btn-icon btn-danger"><i class="fas fa-times"></i></a>
                             </td>
                         </tr>
+                        {{-- Modal Edit Perpanjangan --}}
+                        <div class="modal fade" id="edit_perpanjangan{{$data->id}}" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false" tabindex="-1">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title">Edit Perpanjangan</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="{{route('update.perpanjangan', ['id' => $data->id])}}" enctype="multipart/form-data">
+                                    @csrf
+                                    {{method_field('PUT')}}
+                                    <div class="form-group">
+                                        <label>Perpanjangan</label>
+                                        <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <i class="fas fa-date"></i>
+                                        </div>
+                                        <input id="perpanjangan" type="number" class="form-control" name="perpanjangan" value="{{ $data->perpanjangan }}" required autocomplete="tgl_wajib_kembali" autofocus placeholder="Tanggal wajib kembali..">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tanggal Wajib Kembali</label>
+                                        <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <i class="fas fa-date"></i>
+                                        </div>
+                                        <input id="tgl_wajib_kembali" type="date" class="form-control" name="tgl_wajib_kembali" value="{{ $data->tgl_wajib_kembali }}" required autocomplete="tgl_wajib_kembali" autofocus placeholder="Tanggal wajib kembali..">
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            {{-- <a href="/user/profile/edit" class="btn btn-primary">Edit Profil</a> --}}
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        {{-- end modal edit perpanjangan --}}
                         @endforeach
                     </tbody>
                 </table>
