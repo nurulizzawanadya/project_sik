@@ -108,24 +108,16 @@
                                     {{method_field('PUT')}}
                                     <div class="form-group">
                                         <label>Perpanjangan</label>
-                                        <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <i class="fas fa-date"></i>
-                                        </div>
-                                        <input id="perpanjangan" type="number" class="form-control" name="perpanjangan" value="{{ $data->perpanjangan }}" required autocomplete="tgl_wajib_kembali" autofocus placeholder="Tanggal wajib kembali..">
-                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="perpanjangan" id="inlineRadio1" value=1>
+                                            <label class="form-check-label" for="inlineRadio1">Ya</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="perpanjangan" id="inlineRadio2" value=0>
+                                            <label class="form-check-label" for="inlineRadio2">Tidak</label>
+                                          </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Tanggal Wajib Kembali</label>
-                                        <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <i class="fas fa-date"></i>
-                                        </div>
-                                        <input id="tgl_wajib_kembali" type="date" class="form-control" name="tgl_wajib_kembali" value="{{ $data->tgl_wajib_kembali }}" required autocomplete="tgl_wajib_kembali" autofocus placeholder="Tanggal wajib kembali..">
-                                        </div>
-                                    </div>
-
-                               
+                                    
                             </div>
                             <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Update Perpanjangan</button>

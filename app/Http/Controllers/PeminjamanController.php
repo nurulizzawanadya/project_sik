@@ -116,7 +116,10 @@ class PeminjamanController extends Controller
     public function updatePerpanjangan($id, Request $request){
         $data = Peminjaman::find($id);
         $data->perpanjangan = $request->perpanjangan;
-        $data->tgl_wajib_kembali = $request->tgl_wajib_kembali;
+        $tgl = "$data->tgl_wajib_kembali";
+        if($request->perpanjangan == 1)
+            $data->tgl_wajib_kembali = date('Y-m-d', strtotime($Date. ' + 3 days'));
+        
         $data->save();
         session()->flash('berhasil', 'Perpanjangan Berhasil Diupdate');
         return redirect('/peminjaman');
