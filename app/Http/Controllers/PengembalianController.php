@@ -14,7 +14,6 @@ use Carbon\Carbon;
 
 class PengembalianController extends Controller
 {
-<<<<<<< HEAD
     public function __construct(){
         $this->middleware('auth');
     }
@@ -37,10 +36,6 @@ class PengembalianController extends Controller
     
     public function store($id_peminjaman, Request $post)
     {
-=======
-    public function store($id_peminjaman, Request $post){
-       
->>>>>>> bcc298ad5368b8201fc4d472727ce531640bf5fd
         $petugas = Petugas::where('user_id', Auth::user()->id)->first();
         $data = Pengembalian::create([
             'id_peminjaman' => $id_peminjaman,
@@ -74,14 +69,7 @@ class PengembalianController extends Controller
             }
             
         }
-        
-        // if($data->id >= 1 && $data->id <= 10) $pengembalian = 'pgmbn000';
-        // elseif($data->id >= 10 && $data->id <= 100) $pengembalian = 'pmn00';
-        // elseif($data->id >= 100 && $data->id <= 1000) $pengembalian = 'pjmn0';
-        // elseif($data->id >= 1000 && $data->id <= 10000) $pengembalian = 'pjmn';
-        // // dd($pengembalian . '' . $data->id);
 
-        
         session()->flash('berhasil', 'Buku Dikembalikan');
         // return redirect('/detail-pengembalian/'.$post->id_pengembalian);
         return redirect('/peminjaman');
