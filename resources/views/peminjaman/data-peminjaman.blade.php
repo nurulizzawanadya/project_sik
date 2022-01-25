@@ -89,6 +89,7 @@
                                             onclick="return confirm('Yakin ingin mengubah mengubah perpanjangan?')"><i class="fas fa-user-cog"></i> Tidak</a>
                                     </div>
                                 </div>
+                                @else <span class="badge badge-warning">Sudah Diperpanjang</span>
                                 @endif
                             </td>
                             <td>{{ $data->nama_petugas }}</td>
