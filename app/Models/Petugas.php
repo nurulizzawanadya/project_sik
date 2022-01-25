@@ -9,7 +9,7 @@ class Petugas extends Model
 {
     use HasFactory;
     protected $table = 'petugas';
-    protected $primaryKey ='id_petugas';
+    // protected $primaryKey ='id_petugas';
 
     protected $fillable = [
         'id_petugas',
