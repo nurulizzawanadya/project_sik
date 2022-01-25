@@ -29,6 +29,7 @@ Route::get('/scan', function () {
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);
 Route::post('/insertPeminjaman', [PeminjamanController::class, 'insertPeminjaman'])->name('insertPeminjaman');
 Route::get('/edit-peminjaman/{id}', [PeminjamanController::class, 'edit'])->name('editpinjam');
+Route::put('/update-peminjaman/{id}', [PeminjamanController::class, 'update'])->name('update.pinjam');
 
 Route::get('/update-perpanjangan/{id}/value', [PeminjamanController::class, 'updatePerpanjangan'])->name('update.perpanjangan');
 Route::get('/reset', [PeminjamanController::class, 'reset']);
@@ -38,7 +39,9 @@ Route::post('/insertDetail', [DetailPeminjamanController::class, 'insertDetail']
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', function () {
+    return view('dashboard');
+})->name('/halaman-admin')->middleware('auth');
 
 Route::get('/clear-cache', function() {
     Artisan::call('config:clear');

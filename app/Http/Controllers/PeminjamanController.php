@@ -114,6 +114,16 @@ class PeminjamanController extends Controller
         return view('peminjaman.edit');
     }
 
+    public function update($id, Request $request){
+        $data = Peminjaman::findOrFail($id);
+        $data->id_anggota = $request->id_anggota;
+        $data->tgl_wajib_kembali = $request->tgl_wajib_kembali;
+        $data->save();
+        session()->flash('berhasil', 'Data Berhasil Diupdate!');
+        // return redirect('/detail-peminjaman/'.$post->id_peminjaman);
+        return redirect('/peminjaman');
+    }
+
     public function updatePerpanjangan($id, Request $value){
         $data = Peminjaman::find($id);
         $data->perpanjangan = $value->value;

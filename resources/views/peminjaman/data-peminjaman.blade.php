@@ -100,46 +100,68 @@
                                 <a href="/cek-pengembalian/{{ $data->id_peminjaman }}" class="btn btn-icon btn-warning">Dikembalikan</a>
                             </td>
                             <td>
-                                <a href="{{route('editpinjam', ['id' => $data->id_peminjaman])}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+                                {{-- <a href="{{route('editpinjam', ['id' => $data->id_peminjaman])}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a> --}}
+                                <a href="" data-toggle="modal" data-keyboard="false" data-backdrop="false" data-target="#edit_peminjaman{{$data->id}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
                                 <a href='/delete/{{ $data->id_peminjaman }}' class="btn btn-icon btn-danger"><i class="fas fa-times"></i></a>
                             </td>
                         </tr>
                         {{-- Modal Edit Perpanjangan --}}
-                        {{-- <div class="modal fade" id="edit_perpanjangan{{$data->id}}" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false" tabindex="-1">
+                        <div class="modal fade" id="edit_peminjaman{{$data->id}}" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false" tabindex="-1">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                            <h5 class="modal-title">Edit Perpanjangan</h5>
+                            <h5 class="modal-title">Edit Peminjaman</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             </button>
                             </div>
-                            <form method="POST" action="{{route('update.perpanjangan', ['id' => $data->id])}}" enctype="multipart/form-data">
+                            <form method="POST" action="{{route('update.pinjam', ['id' => $data->id])}}" enctype="multipart/form-data">
                             <div class="modal-body">
-                                
                                     @csrf
                                     {{method_field('PUT')}}
-                                    <div class="form-group">
-                                        <label>Perpanjangan</label>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="perpanjangan" id="inlineRadio1" value=1>
-                                            <label class="form-check-label" for="inlineRadio1">Ya</label>
-                                          </div>
-                                          <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="perpanjangan" id="inlineRadio2" value=0>
-                                            <label class="form-check-label" for="inlineRadio2">Tidak</label>
-                                          </div>
-                                    </div>
-                                    
+                                        <input id="id_peminjaman" type="hidden" class="form-control " name="id_peminjaman"> 
+                                        <div class="form-group">
+                                            <label>Nama Anggota</label>
+                                                <div class="col-sm-12">
+                                                    <select class="form-control js-example-basic-single" name="id_anggota">
+                                                
+                                                        @foreach($id as $anggota)
+                                                            @if($anggota->id_anggota == $data->id_anggota) 
+                                                            <option selected value="{{ $anggota->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
+                                                            @else  
+                                                            <option value="{{ $anggota->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                @error('id_anggota')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                        </div>
+                                        <input id="created_at" type="hidden" class="form-control" name="created_at">
+                                        <input id="perpanjangan" type="hidden" value="{{$data->perpanjangan}}" class="form-control" name="perpanjangan">
+                                        <div class="form-group">
+                                            <label>Tanggal Harus Kembali</label>
+                                                <div class="col-sm-12">
+                                                    <input id="tgl_wajib_kembali" value="{{$data->tgl_wajib_kembali}}" type="date" class="form-control" name="tgl_wajib_kembali" value="{{ old('tgl_wajib_kembali') }}" required autocomplete="tgl_wajib_kembali" autofocus placeholder="Tanggal wajib kembali..">
+                                                </div>
+                                                @error('tgl_wajib_kembali')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                        </div>
                             </div>
                             <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Update Perpanjangan</button>
+                            <button type="submit" class="btn btn-primary">Update Peminjaman</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             {{-- <a href="/user/profile/edit" class="btn btn-primary">Edit Profil</a> --}}
-                            {{-- </div>
+                            </div>
                         </form>
                             </div>
                             </div>
-                        </div> --}} 
+                        </div>
                         {{-- end modal edit perpanjangan --}}
                         @endforeach
                     </tbody>
