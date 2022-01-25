@@ -14,14 +14,13 @@ Route::get('/halaman-admin', function () {
     return view('dashboard');
 })->name('/halaman-admin')->middleware('auth');
 
-
-
 //peminjaman
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);
 Route::post('/insertPeminjaman', [PeminjamanController::class, 'insertPeminjaman'])->name('insertPeminjaman');
 Route::get('/editpinjam/{id}', [PeminjamanController::class, 'edit'])->name('editpinjam');
 Route::get('/update-perpanjangan/{id}/value', [PeminjamanController::class, 'updatePerpanjangan'])->name('update.perpanjangan');
 Route::get('/reset', [PeminjamanController::class, 'reset']);
+
 //detail-peminjaman
 Route::get('/detail-peminjaman/{id_peminjaman}', [DetailPeminjamanController::class, 'index']);
 Route::post('/insertDetail', [DetailPeminjamanController::class, 'insertDetail'])->name('insertDetail');

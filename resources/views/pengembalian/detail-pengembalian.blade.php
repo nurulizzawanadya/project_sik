@@ -31,7 +31,7 @@
                   <div class="alert-title">Total Denda : {{$denda}}</div>
                   Anggota <text class="font-weight-bold">{{$data2->anggota->nama_anggota}}</text> Meminjam Buku sebanyak
                   {{$byk_buku}} dan Telah diberikan tenggat waktu Pengembalian {{$data2->tgl_wajib_kembali}}
-                  serta @if($data2->perpanjangan == 0) tidak melakukan perpanjangan @else telah melakukan perpanjangan sebanyak {{$data2->perpanjangan}} @endif
+                  serta @if($data2->perpanjangan == 0) tidak melakukan perpanjangan @else telah melakukan perpanjangan @endif
                 </div>
               </div>
         </div>
@@ -69,11 +69,12 @@
                         <input type="hidden" name="denda" value="{{$denda}}">
                         @if($byk_buku != 0)
                             {{-- @for($i=1; $i<=$byk_buku; $i++) --}}
+                            <input type="hidden" name="id_isbn" value=1>
                             @foreach($data as $a)
                             <input type="hidden" name="id_isbn{{$loop->iteration}}" value="{{$a->no_isbn}}">
                             @endforeach
                         @else
-                            <input type="hidden" name="no_isbn" value=0>
+                            <input type="hidden" name="id_isbn" value=0>
                         @endif
                     </form>
                 </div>

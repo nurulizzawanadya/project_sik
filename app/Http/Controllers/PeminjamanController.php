@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 Use Auth;
 use App\Models\Peminjaman;
 use App\Models\DetailPeminjaman;
+use App\Models\DetailPengembalian;
 use App\Models\Pengembalian;
 use App\Models\Petugas;
 
@@ -130,6 +131,7 @@ class PeminjamanController extends Controller
         Peminjaman::truncate();
         DetailPeminjaman::truncate();
         Pengembalian::truncate();
+        DetailPengembalian::truncate();
         echo "sukses reset";
 
     }
