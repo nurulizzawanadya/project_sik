@@ -12,7 +12,7 @@
 <div class="section-header section-title-mt-0">
     <h1>Detail Pengembalian</h1>
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item"><a href="/dashboard">Dashboard</a></div>
+        <div class="breadcrumb-item"><a href="{{ url('halaman-admin') }}">Dashboard</a></div>
         <div class="breadcrumb-item"><a href="/data-Pengembalian">Data Pengembalian</a></div>
         <div class="breadcrumb-item active">Data Detail Pengembalian</div>
     </div>

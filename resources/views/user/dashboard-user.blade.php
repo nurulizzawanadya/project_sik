@@ -29,7 +29,7 @@
                 </form>
                 <ul class="navbar-nav navbar-right">
                     @guest
-                        <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                        <!-- <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                         <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
                         <div class="d-sm-none d-lg-inline-block">Hi, User</div></a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -48,7 +48,7 @@
                             <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
                         </div>
-                        </li>
+                        </li> -->
                     @else
                         <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                         <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
@@ -78,6 +78,11 @@
                     @endguest
                     
                 </ul>
+            </nav>
+            <nav class="navbar navbar-secondary navbar-expand-lg">
+                <div class="container">
+                    
+                </div>
             </nav>
             <div class="main-content">
                 <section class="section">
