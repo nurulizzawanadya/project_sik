@@ -1,6 +1,6 @@
 @extends('layout/main_layout')
 
-@section('title', 'Pengembalian')
+@section('title', 'Detail Pengembalian')
 
 @section('css_custom')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
@@ -12,7 +12,8 @@
     <h1>Pengembalian</h1>
     <div class="section-header-breadcrumb">
         <div class="breadcrumb-item"><a href="{{ url('halaman-admin') }}">Dashboard</a></div>
-        <div class="breadcrumb-item active">Data Pengembalian</div>
+        <div class="breadcrumb-item"><a href="{{ url('pengembalian') }}">Data Pengembalian</a></div>
+        <div class="breadcrumb-item active">Detail Pengembalian</div>
     </div>
 </div>
 @endsection
@@ -22,31 +23,28 @@
             <div class="card">
                 <div class="card-body">
             <div class="table-responsive">
-                <div class="section-title mt-0">Data Pengembalian</div>
+                <div class="section-title mt-0">Detail Pengembalian</div>
                 <table id="id" class="table table-bordered responsive">
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">ID Pengembalian</th>
-                            <th class="text-center" scope="col">ID Peminjaman</th>
-                            <th class="text-center" scope="col">Nama Petugas</th>
-                            <th class="text-center" scope="col">Peminjam</th>
-                            <th class="text-center" scope="col">Tanggal Kembali</th>
-                            <th class="text-center" scope="col">Denda</th>
-                            <th class="text-center" scope="col"></th>
+                            <th class="text-center" scope="col">Buku</th>
+                            <th class="text-center" scope="col">Status Kembali</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($pengembalian as $data)
+                        @foreach($detail as $data)
                         <tr class="text-center">
                             <td>{{ $data->id_pengembalian }}</td>
-                            <td>{{ $data->id_peminjaman }}</td>
-                            <td>{{ $data->nama_petugas }}</td>
-                            <td>{{ $data->nama_anggota }}</td>
-                            <td>{{ date('d M Y', strtotime($data->tgl_kembali)) }}</td>
-                            <td>Rp {{ $data->denda }} ,-</td>
+                            <td>{{ $data->buku }}</td>
                             <td>
-                                <a href="/detail-pengembalian/{{ $data->id_pengembalian }}" class="btn btn-icon btn-success">Detail Pengembalian</a>
+                                @if($data->status_kembali == 0)
+                                    <span class="badge badge-warning">Belum Kembali</span>
+                                @else
+                                    <span class="badge badge-warning">Sudah Kembali</span>
+                                @endif
                             </td>
+                            
                         </tr>
                         @endforeach
                     </tbody>

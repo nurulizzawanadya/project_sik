@@ -60,8 +60,8 @@
                             <th class="text-center" scope="col">Nama Peminjam</th>
                             <th class="text-center" scope="col">Tanggal Pinjam</th>
                             <th class="text-center" scope="col">Wajib Kembali</th>
-                            <th class="text-center" scope="col">Perpanjangan</th>
                             <th class="text-center" scope="col">Nama Petugas</th>
+                            <th class="text-center" scope="col">Perpanjangan</th>
                             <th class="text-center" scope="col">Detail</th>
                             <th class="text-center" scope="col">Pengembalian</th>
                             <th class="text-center" scope="col">Action</th>
@@ -74,6 +74,7 @@
                             <td>{{ $data->nama_anggota }}</td>
                             <td>{{date('d M Y', strtotime($data->created_at))}}</td>
                             <td>{{date('d M Y', strtotime($data->tgl_wajib_kembali))}}</td>
+                            <td>{{ $data->nama_petugas }}</td>
                             <td class="text-center" scope="col">
                                 @if($data->perpanjangan == 0)
                                 <div class="dropdown d-inline">
@@ -91,7 +92,6 @@
                                 @else <span class="badge badge-warning">Diperpanjang</span>
                                 @endif
                             </td>
-                            <td>{{ $data->nama_petugas }}</td>
                             <td>
                                 <a href="/detail-peminjaman/{{ $data->id_peminjaman }}" class="btn btn-icon btn-success">Detail Peminjaman</a>
                             </td>

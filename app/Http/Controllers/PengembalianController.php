@@ -20,18 +20,11 @@ class PengembalianController extends Controller
 
     public function index()
     {
-        $pengembalian = DB::table('pengembalian')
-        ->join ('peminjaman', 'pengembalian.id_peminjaman', '=', 'peminjaman.id_peminjaman')
-        ->join ('petugas', 'pengembalian.id_petugas', '=', 'petugas.id_petugas')
-        ->get();
+        $pengembalian = Pengembalian::all();
+        $peminjaman = Peminjaman::all();
+        $petugas = Petugas::all();
 
-        $data = array(
-            'menu' => 'Pengembalian',
-            'pengembalian' => $pengembalian,
-            'submenu' => ''
-        );
-
-        return view('pengembalian.data-pengembalian', $data);
+        return view('pengembalian.data-pengembalian', compact('pengembalian','peminjaman','petugas'));
     }
     
     public function store($id_peminjaman, Request $post)

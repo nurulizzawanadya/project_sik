@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\DetailPeminjamanController;
+use App\Http\Controllers\DetailPengembalianController;
 use Carbon\Carbon;
 
 Route::get('/', function () {
@@ -33,6 +34,9 @@ Route::put('/update-detail-peminjaman', [DetailPeminjamanController::class, 'upd
 //pengembalian
 Route::get('/pengembalian', [PengembalianController::class, 'index']);
 Route::post('/pengembalian/{id}', [PengembalianController::class, 'store'])->name('pengembalian');
+
+//detailpengembalian
+Route::get('/detail-pengembalian/{id_pengembalian}', [DetailPengembalianController::class, 'index']);
 
 Route::get('/home', function () {
     return view('dashboard');
