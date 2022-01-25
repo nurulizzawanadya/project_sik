@@ -34,8 +34,6 @@ Route::put('/update-detail-peminjaman', [DetailPeminjamanController::class, 'upd
 Route::get('/pengembalian', [PengembalianController::class, 'index']);
 Route::post('/pengembalian/{id}', [PengembalianController::class, 'store'])->name('pengembalian');
 
-Auth::routes();
-
 Route::get('/home', function () {
     return view('dashboard');
 })->name('/halaman-admin')->middleware('auth');
@@ -45,4 +43,10 @@ Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');
     echo "cache cleared!";
 })->name('clear-cache');
+
+Auth::routes([
+    'register' => true, // Registration Routes...
+    'reset' => true, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+]);
 
