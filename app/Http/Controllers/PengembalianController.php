@@ -21,7 +21,7 @@ class PengembalianController extends Controller
     public function index()
     {
         $data = Pengembalian::with('anggota', 'petugas')->get();
-        dd($data);
+        // dd($data);
         view()->share([
             'data' => $data
         ]);
