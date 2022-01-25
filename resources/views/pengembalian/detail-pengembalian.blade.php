@@ -67,6 +67,7 @@
                     <form id="pengembalian-form" action="{{ route('pengembalian', ['id' => $data2->id_peminjaman]) }}" method="POST" class="d-none">
                         @csrf
                         <input type="hidden" name="denda" value="{{$denda}}">
+                        <input type="hidden" name="id_anggota" value="{{$data2->id_anggota}}">
                         @if($byk_buku != 0)
                             {{-- @for($i=1; $i<=$byk_buku; $i++) --}}
                             <input type="hidden" name="id_isbn" value=1>

@@ -20,11 +20,13 @@ class PengembalianController extends Controller
 
     public function index()
     {
-        $pengembalian = Pengembalian::all();
-        $peminjaman = Peminjaman::all();
-        $petugas = Petugas::all();
-
-        return view('pengembalian.data-pengembalian', compact('pengembalian','peminjaman','petugas'));
+        $data = Pengembalian::with('anggota', 'petugas')->get();
+        dd($data);
+        view()->share([
+            'data' => $data
+        ]);
+       
+        return view('pengembalian.data-pengembalian');
     }
     
     public function store($id_peminjaman, Request $post)
@@ -33,6 +35,7 @@ class PengembalianController extends Controller
         $data = Pengembalian::create([
             'id_peminjaman' => $id_peminjaman,
             'id_petugas' => $petugas->id_petugas,
+            'id_anggota' => $post->id_anggota,
             'tgl_kembali' => Carbon::now(),
             'denda' => $post->denda,
         ]);
