@@ -69,11 +69,12 @@
                         <input type="hidden" name="denda" value="{{$denda}}">
                         @if($byk_buku != 0)
                             {{-- @for($i=1; $i<=$byk_buku; $i++) --}}
+                            <input type="hidden" name="id_isbn" value=1>
                             @foreach($data as $a)
                             <input type="hidden" name="id_isbn{{$loop->iteration}}" value="{{$a->no_isbn}}">
                             @endforeach
                         @else
-                            <input type="hidden" name="no_isbn" value=0>
+                            <input type="hidden" name="id_isbn" value=0>
                         @endif
                     </form>
                 </div>
