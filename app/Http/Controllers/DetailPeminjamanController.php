@@ -63,4 +63,13 @@ class DetailPeminjamanController extends Controller
 
         return view('pengembalian.detail-pengembalian');
     }
+
+    public function update(Request $request){
+        $data = DetailPeminjaman::where('id_peminjaman', $request->id)->first();
+        $data->no_isbn = $request->no_isbn;
+        $data->save();
+        session()->flash('berhasil', 'Data Berhasil Diupdate!');
+        // return redirect('/detail-peminjaman/'.$post->id_peminjaman);
+        return redirect('/peminjaman');
+    }
 }
