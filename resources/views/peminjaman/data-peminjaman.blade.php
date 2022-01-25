@@ -101,10 +101,10 @@
                             <td>
                                 {{-- <a href="{{route('editpinjam', ['id' => $data->id_peminjaman])}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a> --}}
                                 <a href="" data-toggle="modal" data-keyboard="false" data-backdrop="false" data-target="#edit_peminjaman{{$data->id}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
-                                <a href='/delete/{{ $data->id_peminjaman }}' class="btn btn-icon btn-danger"><i class="fas fa-times"></i></a>
+                                <a href='/delete/{{ $data->id }}' class="btn btn-icon btn-danger"><i class="fas fa-times"></i></a>
                             </td>
                         </tr>
-                        {{-- Modal Edit Perpanjangan --}}
+                        {{-- Modal Edit Peminjaman --}}
                         <div class="modal fade" id="edit_peminjaman{{$data->id}}" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false" tabindex="-1">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -161,7 +161,7 @@
                             </div>
                             </div>
                         </div>
-                        {{-- end modal edit perpanjangan --}}
+                        {{-- end modal edit peminjaman --}}
                         @endforeach
                     </tbody>
                 </table>

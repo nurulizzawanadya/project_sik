@@ -19,6 +19,7 @@ Route::get('/peminjaman', [PeminjamanController::class, 'index']);
 Route::post('/insertPeminjaman', [PeminjamanController::class, 'insertPeminjaman'])->name('insertPeminjaman');
 Route::get('/edit-peminjaman/{id}', [PeminjamanController::class, 'edit'])->name('editpinjam');
 Route::put('/update-peminjaman/{id}', [PeminjamanController::class, 'update'])->name('update.pinjam');
+Route::get('/delete/{id}', [PeminjamanController::class, 'delete'])->name('delete.pinjam');
 
 Route::get('/update-perpanjangan/{id}/value', [PeminjamanController::class, 'updatePerpanjangan'])->name('update.perpanjangan');
 Route::get('/reset', [PeminjamanController::class, 'reset']);
@@ -27,12 +28,11 @@ Route::get('/reset', [PeminjamanController::class, 'reset']);
 Route::get('/detail-peminjaman/{id_peminjaman}', [DetailPeminjamanController::class, 'index']);
 Route::post('/insertDetail', [DetailPeminjamanController::class, 'insertDetail'])->name('insertDetail');
 Route::get('/cek-pengembalian/{id_peminjaman}', [DetailPeminjamanController::class, 'cek']);
+Route::put('/update-detail-peminjaman', [DetailPeminjamanController::class, 'update'])->name('update.detail.pinjam');
 
 //pengembalian
 Route::get('/pengembalian', [PengembalianController::class, 'index']);
 Route::post('/pengembalian/{id}', [PengembalianController::class, 'store'])->name('pengembalian');
-
-Auth::routes();
 
 Route::get('/home', function () {
     return view('dashboard');
@@ -43,4 +43,10 @@ Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');
     echo "cache cleared!";
 })->name('clear-cache');
+
+Auth::routes([
+    'register' => true, // Registration Routes...
+    'reset' => true, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+]);
 

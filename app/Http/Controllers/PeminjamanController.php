@@ -124,6 +124,16 @@ class PeminjamanController extends Controller
         return redirect('/peminjaman');
     }
 
+    public function delete($id){
+       
+        $data = Peminjaman::findOrFail($id);
+        DetailPeminjaman::where('id_peminjaman', $data->id_peminjaman)->delete();
+        Peminjaman::find($id)->delete();
+        session()->flash('berhasil', 'Data Berhasil Dihapus!');
+        // return redirect('/detail-peminjaman/'.$post->id_peminjaman);
+        return redirect('/peminjaman');
+    }
+
     public function updatePerpanjangan($id, Request $value){
         $data = Peminjaman::find($id);
         $data->perpanjangan = $value->value;

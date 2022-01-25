@@ -3,8 +3,10 @@
 @section('title', 'Detail')
 
 @section('css_custom')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+{{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"> --}}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('breadcrumb')
@@ -55,6 +57,7 @@
                         <tr>
                             <th class="text-center" scope="col">ID Peminjaman</th>
                             <th class="text-center" scope="col">Buku</th>
+                            {{-- <th class="text-center" scope="col">Aksi</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -62,7 +65,56 @@
                         <tr class="text-center">
                             <td>{{ $data->id_peminjaman }}</td>
                             <td>{{ $data->judul_buku }}</td>
+                            {{-- <td>
+                                <a href="" data-toggle="modal" data-keyboard="false" data-backdrop="false" data-target="#edit_buku{{$data->id_peminjaman}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+                            </td> --}}
                         </tr>
+                               {{-- Modal Edit Peminjaman --}}
+                               <div class="modal fade" id="edit_buku{{$data->id_peminjaman}}" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false" tabindex="-1">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title">Edit Peminjaman</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                </button>
+                                </div>
+                                <form method="POST" action="{{route('update.detail.pinjam')}}" enctype="multipart/form-data">
+                                <input type="hidden" name="id" value="{{$data->id_peminjaman}}">
+                                    <div class="modal-body">
+                                        @csrf
+                                        {{method_field('PUT')}}
+                                            <div class="form-group">
+                                                <label>Buku</label>
+                                                    <div class="col-sm-12">
+                                                        <select class="form-control js-example-basic-single" name="no_isbn">
+                                                    
+                                                            @foreach($id as $a)
+                                                                @if($a->no_isbn == $data->no_isbn) 
+                                                                <option selected value="{{ $a->no_isbn }}">{{ $a->no_isbn }} - {{ $a->judul_buku }}</option>
+                                                                @else  
+                                                                <option value="{{ $a->no_isbn }}">{{ $a->no_isbn }} - {{ $a->judul_buku }} </option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    @error('id_buku')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                            </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Update Peminjaman</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                {{-- <a href="/user/profile/edit" class="btn btn-primary">Edit Profil</a> --}}
+                                </div>
+                            </form>
+                                </div>
+                                </div>
+                            </div>
+                            {{-- end modal edit peminjaman --}}
                         @endforeach
                     </tbody>
                 </table>
@@ -119,13 +171,17 @@
 </script>
 
 @section('script')
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+{{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script> --}}
+{{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
 $(document).ready( function () {
     $('#id').DataTable();
-    $('#select2').select2();
+    $('.js-example-basic-single').select2();
+    // $('#select2').select2();
 } );
 
 </script>
