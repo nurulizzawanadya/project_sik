@@ -20,7 +20,7 @@ class PengembalianController extends Controller
 
     public function index()
     {
-        $data = Pengembalian::with('anggota', 'petugas')->get();
+        $data = Pengembalian::with('anggota', 'user')->get();
         // dd($data);
         view()->share([
             'data' => $data
@@ -34,7 +34,7 @@ class PengembalianController extends Controller
         $petugas = Petugas::where('user_id', Auth::user()->id)->first();
         $data = Pengembalian::create([
             'id_peminjaman' => $id_peminjaman,
-            'id_petugas' => $petugas->id_petugas,
+            'id_petugas' => Auth::user()->id,
             'id_anggota' => $post->id_anggota,
             'tgl_kembali' => Carbon::now(),
             'denda' => $post->denda,

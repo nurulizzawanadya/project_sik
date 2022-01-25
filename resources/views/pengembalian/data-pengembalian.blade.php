@@ -42,7 +42,7 @@
                             <td> {{$loop->iteration}}</td>
                             <td>{{ $a->id_pengembalian }}</td>
                             <td>{{ $a->id_peminjaman }}</td>
-                            <td>{{ $a->id_petugas}}</td>
+                            <td>{{ $a->user->name}}</td>
                             <td>{{ $a->anggota->nama_anggota}}</td>
                             <td>{{ date('d M Y', strtotime($a->tgl_kembali)) }}</td>
                             <td>Rp {{ $a->denda }} ,-</td>

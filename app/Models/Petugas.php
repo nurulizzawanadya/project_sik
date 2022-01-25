@@ -9,7 +9,7 @@ class Petugas extends Model
 {
     use HasFactory;
     protected $table = 'petugas';
-    // protected $primaryKey ='id_petugas';
+    protected $primaryKey ='id_petugas';
 
     protected $fillable = [
         'id_petugas',
@@ -17,6 +17,6 @@ class Petugas extends Model
     ];
 
     public function post(){
-        return $this->hasMany(Pengembalian::class, 'id_petugas');
+        return $this->hasMany(Pengembalian::class, 'id');
     }
 }
