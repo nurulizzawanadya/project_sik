@@ -51,7 +51,6 @@
                     <a href="#" class="btn btn-icon icon-left btn-primary" style="margin-left: 45px" data-toggle="modal" data-target="#exampleModal">
                         <i class="far fa-edit"></i>Input Peminjaman
                     </a>
-                    <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Input Peminjaman</button> -->
                 </div>
                 <br>
                 <table id="id" class="table table-bordered responsive">
