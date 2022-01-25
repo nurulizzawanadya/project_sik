@@ -14,8 +14,33 @@ use Carbon\Carbon;
 
 class PengembalianController extends Controller
 {
+<<<<<<< HEAD
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        $pengembalian = DB::table('pengembalian')
+        ->join ('peminjaman', 'pengembalian.id_peminjaman', '=', 'peminjaman.id_peminjaman')
+        ->join ('petugas', 'pengembalian.id_petugas', '=', 'petugas.id_petugas')
+        ->get();
+
+        $data = array(
+            'menu' => 'Pengembalian',
+            'pengembalian' => $pengembalian,
+            'submenu' => ''
+        );
+
+        return view('pengembalian.data-pengembalian', $data);
+    }
+    
+    public function store($id_peminjaman, Request $post)
+    {
+=======
     public function store($id_peminjaman, Request $post){
        
+>>>>>>> bcc298ad5368b8201fc4d472727ce531640bf5fd
         $petugas = Petugas::where('user_id', Auth::user()->id)->first();
         $data = Pengembalian::create([
             'id_peminjaman' => $id_peminjaman,

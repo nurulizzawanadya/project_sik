@@ -29,12 +29,13 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-danger">
-                            <i class="far fa-newspaper"></i>
+                            <a href="{{ url('/pengembalian') }}">
+                                <i class="fas fa-undo-alt"></i>
+                            </a>
                         </div>
                         <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Anggota</h4>
-                            </div>
+                            <br><br>
+                            <h6>PENGEMBALIAN</h6>
                         </div>
                     </div>
                 </div>

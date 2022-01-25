@@ -13,7 +13,7 @@
 <div class="section-header section-title-mt-0">
     <h1>Peminjaman</h1>
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item"><a href="/dashboard">Dashboard</a></div>
+        <div class="breadcrumb-item"><a href="{{ url('halaman-admin') }}">Dashboard</a></div>
         <div class="breadcrumb-item active">Data Peminjaman</div>
     </div>
 </div>
@@ -48,10 +48,9 @@
                     </div>
                 @endif
                 <div class="button">
-                    <a href="#" class="btn btn-icon icon-left btn-primary" style="margin-left: 900px" data-toggle="modal" data-target="#exampleModal">
+                    <a href="#" class="btn btn-icon icon-left btn-primary" style="margin-left: 45px" data-toggle="modal" data-target="#exampleModal">
                         <i class="far fa-edit"></i>Input Peminjaman
                     </a>
-                    <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Input Peminjaman</button> -->
                 </div>
                 <br>
                 <table id="id" class="table table-bordered responsive">
@@ -75,7 +74,7 @@
                             <td>{{ $data->nama_anggota }}</td>
                             <td>{{date('d M Y', strtotime($data->created_at))}}</td>
                             <td>{{date('d M Y', strtotime($data->tgl_wajib_kembali))}}</td>
-                            <td>
+                            <td class="text-center" scope="col">
                                 @if($data->perpanjangan == 0)
                                 <div class="dropdown d-inline">
                                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,7 +88,7 @@
                                             onclick="return confirm('Yakin ingin mengubah mengubah perpanjangan?')"><i class="fas fa-user-cog"></i> Tidak</a>
                                     </div>
                                 </div>
-                                @else <span class="badge badge-warning">Sudah Diperpanjang</span>
+                                @else <span class="badge badge-warning">Diperpanjang</span>
                                 @endif
                             </td>
                             <td>{{ $data->nama_petugas }}</td>
