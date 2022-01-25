@@ -113,11 +113,11 @@ class PeminjamanController extends Controller
         return view('peminjaman.edit');
     }
 
-    public function updatePerpanjangan($id, Request $request){
+    public function updatePerpanjangan($id, Request $value){
         $data = Peminjaman::find($id);
-        $data->perpanjangan = $request->perpanjangan;
+        $data->perpanjangan = $value->value;
         $tgl = "$data->tgl_wajib_kembali";
-        if($request->perpanjangan == 1)
+        if($value->value == 1)
             $data->tgl_wajib_kembali = date('Y-m-d', strtotime($tgl. ' + 3 days'));
         
         $data->save();

@@ -30,7 +30,7 @@ Route::get('/peminjaman', [PeminjamanController::class, 'index']);
 Route::post('/insertPeminjaman', [PeminjamanController::class, 'insertPeminjaman'])->name('insertPeminjaman');
 Route::get('/edit-peminjaman/{id}', [PeminjamanController::class, 'edit'])->name('editpinjam');
 
-Route::put('/update-perpanjangan/{id}', [PeminjamanController::class, 'updatePerpanjangan'])->name('update.perpanjangan');
+Route::get('/update-perpanjangan/{id}/value', [PeminjamanController::class, 'updatePerpanjangan'])->name('update.perpanjangan');
 Route::get('/reset', [PeminjamanController::class, 'reset']);
 //detail-peminjaman
 Route::get('/detail-peminjaman/{id_peminjaman}', [DetailPeminjamanController::class, 'index']);

@@ -73,14 +73,23 @@
                         <tr class="text-center">
                             <td>{{ $data->id_peminjaman }}</td>
                             <td>{{ $data->nama_anggota }}</td>
-                            <td>{{ $data->created_at }}</td>
-                            <td>{{ $data->tgl_wajib_kembali }}</td>
+                            <td>{{date('d M Y', strtotime($data->created_at))}}</td>
+                            <td>{{date('d M Y', strtotime($data->tgl_wajib_kembali))}}</td>
                             <td>
-                                <a class="btn btn-info" href="" data-toggle="modal" data-keyboard="false" data-backdrop="false" data-target="#edit_perpanjangan{{$data->id}}">
-                                    @if($data->perpanjangan == 0) Tidak Diperpanjangan
-                                    @else Diperpanjang
-                                    @endif
-                                </a>
+                                @if($data->perpanjangan == 0)
+                                <div class="dropdown d-inline">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @if($data->perpanjangan == 0) Perpanjangan @endif
+                                    </button>
+                                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                      
+                                        <a href="{{route('update.perpanjangan', ['id' => $data->id, 'value' => 1])}}" class="dropdown-item has-icon"
+                                            onclick="return confirm('Yakin ingin mengubah perpanjangan?')"><i class="fas fa-user-cog"></i> Ya</a>
+                                        <a href="{{route('update.perpanjangan', ['id' => $data->id, 'value' => 0])}}" class="dropdown-item has-icon"
+                                            onclick="return confirm('Yakin ingin mengubah mengubah perpanjangan?')"><i class="fas fa-user-cog"></i> Tidak</a>
+                                    </div>
+                                </div>
+                                @endif
                             </td>
                             <td>{{ $data->nama_petugas }}</td>
                             <td>
