@@ -104,7 +104,7 @@
                             </td>
                         </tr>
                         {{-- Modal Edit Perpanjangan --}}
-                        <div class="modal fade" id="edit_perpanjangan{{$data->id}}" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false" tabindex="-1">
+                        {{-- <div class="modal fade" id="edit_perpanjangan{{$data->id}}" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false" tabindex="-1">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -134,11 +134,11 @@
                             <button type="submit" class="btn btn-primary">Update Perpanjangan</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             {{-- <a href="/user/profile/edit" class="btn btn-primary">Edit Profil</a> --}}
-                            </div>
+                            {{-- </div>
                         </form>
                             </div>
                             </div>
-                        </div>
+                        </div> --}} 
                         {{-- end modal edit perpanjangan --}}
                         @endforeach
                     </tbody>
