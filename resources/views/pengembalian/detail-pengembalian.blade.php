@@ -31,7 +31,7 @@
                   <div class="alert-title">Total Denda : {{$denda}}</div>
                   Anggota <text class="font-weight-bold">{{$data2->anggota->nama_anggota}}</text> Meminjam Buku sebanyak
                   {{$byk_buku}} dan Telah diberikan tenggat waktu Pengembalian {{$data2->tgl_wajib_kembali}}
-                  serta @if($data2->perpanjangan == 0) tidak melakukan perpanjangan @else telah melakukan perpanjangan sebanyak {{$data2->perpanjangan}} @endif
+                  serta @if($data2->perpanjangan == 0) tidak melakukan perpanjangan @else telah melakukan perpanjangan @endif
                 </div>
               </div>
         </div>
