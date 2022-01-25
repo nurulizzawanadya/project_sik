@@ -14,4 +14,8 @@ class Buku extends Model
     public function pinjam(){
         return $this->hasMany(DetailPeminjaman::class, 'no_isbn');
     }
+
+    public function balik(){
+        return $this->hasMany(DetailPengembalian::class, 'no_isbn');
+    }
 }

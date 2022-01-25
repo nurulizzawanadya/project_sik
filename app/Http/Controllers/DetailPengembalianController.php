@@ -16,10 +16,12 @@ class DetailPengembalianController extends Controller
 {
     public function index()
     {
-        $detail = DetailPengembalian::all();
-        $pengembalian = Pengembalian::all();
-        $buku = Buku::all();
+        $detail = DetailPengembalian::with('book')->get();
+        // dd($detail);
+        view()->share([
+            'detail' => $detail
+        ]);
 
-        return view('pengembalian.data-detail-pengembalian', compact('detail', 'pengembalian','buku'));
+        return view('pengembalian.data-detail-pengembalian');
     }
 }
