@@ -16,7 +16,7 @@ class DetailPengembalianController extends Controller
 {
     public function index()
     {
-        $detail = DetailPengembalian::with('book')->get();
+        $detail = DetailPengembalian::all();
         // dd($detail);
         view()->share([
             'detail' => $detail

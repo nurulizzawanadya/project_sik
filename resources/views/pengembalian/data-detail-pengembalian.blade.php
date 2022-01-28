@@ -36,7 +36,7 @@
                         @foreach($detail as $data)
                         <tr class="text-center">
                             <td>{{ $data->id_pengembalian }}</td>
-                            <td>{{ $data->no_isbn }}</td>
+                            <td>{{ $data->getParent()->judul_buku }}</td>
                             <td>
                                 @if($data->status_kembali == 0)
                                     <span class="badge badge-warning">Belum Kembali</span>

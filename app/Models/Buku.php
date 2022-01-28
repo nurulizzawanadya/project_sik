@@ -16,6 +16,6 @@ class Buku extends Model
     }
 
     public function balik(){
-        return $this->hasMany(DetailPengembalian::class, 'no_isbn');
+        return $this->hasMany(DetailPengembalian::class, 'no_isbn', 'judul_buku');
     }
 }
