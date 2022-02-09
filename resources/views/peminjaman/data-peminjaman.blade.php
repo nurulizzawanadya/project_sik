@@ -100,8 +100,10 @@
                             </td>
                             <td>
                                 {{-- <a href="{{route('editpinjam', ['id' => $data->id_peminjaman])}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a> --}}
-                                <a href="" data-toggle="modal" data-keyboard="false" data-backdrop="false" data-target="#edit_peminjaman{{$data->id}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
-                                <a href='/delete/{{ $data->id }}' class="btn btn-icon btn-danger"><i class="fas fa-times"></i></a>
+                                <a href="" data-toggle="modal" data-keyboard="false" data-backdrop="false" data-target="#edit_peminjaman{{$data->id}}" 
+                                    onclick="return confirm('Yakin ingin mengedit data?')"class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
+                                <a href='/delete/{{ $data->id }}' class="btn btn-icon btn-danger"
+                                    onclick="return confirm('Yakin ingin menghapus data?')"><i class="fas fa-times"></i></a>
                             </td>
                         </tr>
                         {{-- Modal Edit Peminjaman --}}
