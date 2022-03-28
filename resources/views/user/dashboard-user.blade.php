@@ -86,7 +86,8 @@
             </nav>
             <div class="main-content">
                 <section class="section">
-
+                    {{-- @yield('breadcrumb') --}}
+                    @yield('content')
                 </section>
             </div>
             @include('layout.footer')
