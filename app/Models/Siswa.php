@@ -13,7 +13,9 @@ class Siswa extends Model
         'nisn',
         'nama',
         'gender',
-        'ttl',
-        'kelas'
+        'tmpt_lahir',
+        'tgl_lahir',
+        'kelas',
+        'no_induk'
     ];
 }
