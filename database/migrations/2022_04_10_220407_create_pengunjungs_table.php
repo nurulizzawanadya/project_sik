@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeToDateTtlsiswa extends Migration
+class CreatePengunjungsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class ChangeToDateTtlsiswa extends Migration
      */
     public function up()
     {
-        Schema::table('siswas', function (Blueprint $table) {
-            $table->string('ttl')->change();
-            $table->renameColumn('ttl', 'tmpt_lahir');
-            $table->date('tgl_lahir');
+        Schema::create('pengunjungs', function (Blueprint $table) {
+            $table->id();
+            $table->string(
+                'anggota_id', 5
+            );
+            $table->timestamps();
         });
     }
 
@@ -27,8 +29,6 @@ class ChangeToDateTtlsiswa extends Migration
      */
     public function down()
     {
-        Schema::table('siswas', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('pengunjungs');
     }
 }

@@ -15,6 +15,7 @@
       @include('layout.navbar2')
       <div class="main-content">
         <section class="section">
+          @include('sweetalert::alert')
           @yield('breadcrumb')
           @yield('content')
         </section>

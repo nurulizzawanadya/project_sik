@@ -5,12 +5,12 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\DetailPeminjamanController;
 use App\Http\Controllers\DetailPengembalianController;
+use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\PengunjungController;
 use Carbon\Carbon;
 
-Route::get('/', function () {
-    return view('user/dashboard-user');
-})->name('/');
-
+Route::get('/', [AnggotaController::class, 'index'])->name('/');
+Route::get('/store-pengunjung/{id}', [PengunjungController::class, 'store'])->name('insert_pengunjung.store');
 Route::get('/halaman-admin', function () {
     return view('dashboard');
 })->name('/halaman-admin')->middleware('auth');
