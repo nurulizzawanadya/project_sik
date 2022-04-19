@@ -11,7 +11,7 @@
 
 @section('breadcrumb')
 <div class="section-header section-title-mt-0">
-    <h1>Dsta Buku</h1>
+    <h1>Data Buku</h1>
     <div class="section-header-breadcrumb">
         <div class="breadcrumb-item"><a href="/dashboard">Dashboard</a></div>
         <div class="breadcrumb-item active">Data Peminjaman</div>
@@ -25,17 +25,18 @@
         <div class="card-header">
             <h4>Card Create by @bayuhnm</h4>
         </div>
-        <div class="row">
+        <div class="row row-cols-1 row-cols-md-3 g-4 px-4">
             @foreach($data as $a)
-            <div class="col">
+            <div class="col-sm-3 mb-3">
+              <div class="card h-100">
                 <div class="product-item pb-3">
-                    <div class="product-image">
+                    <div class="product-image mt-4">
                         <div class="container" style="background-color:rgb(196, 225, 252); height: 80px;">
                             <i class="bi bi-apple fa-3x" style="color:cornflowerblue; line-height: 2"></i>
                         </div>
                     </div>
                     <div class="product-details">
-                        <div class="product-name">{{$a->judul_buku}}</div>
+                        <div class="product-name px-3">{{$a->judul_buku}}</div>
                         <div class="product-review">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -49,6 +50,7 @@
                         </div>
                     </div>
                 </div>
+              </div>
             </div>
             @endforeach
             {{-- <div class="col">
