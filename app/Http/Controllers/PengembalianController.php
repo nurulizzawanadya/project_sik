@@ -20,7 +20,7 @@ class PengembalianController extends Controller
 
     public function index()
     {
-        $data = Pengembalian::with('anggota', 'user')->get();
+        $data = Pengembalian::with('anggota', 'petugas')->get();
         // dd($data);
         view()->share([
             'data' => $data
@@ -31,36 +31,47 @@ class PengembalianController extends Controller
     
     public function store($id_peminjaman, Request $post)
     {
-        $petugas = Petugas::where('user_id', Auth::user()->id)->first();
-        $data = Pengembalian::create([
-            'id_peminjaman' => $id_peminjaman,
-            'id_petugas' => Auth::user()->id,
-            'id_anggota' => $post->id_anggota,
-            'tgl_kembali' => Carbon::now(),
-            'denda' => $post->denda,
-        ]);
-        $pengembalian = Pengembalian::findOrFail($data->id);
-        $pengembalian->id_pengembalian = 'kembali'. $data->id;
-        $pengembalian->save();
-        Peminjaman::where('id_peminjaman', $id_peminjaman)->delete();
+        $data = new Pengembalian();
+        $data->peminjaman_id = $id_peminjaman;
+        $data->petugas_id = Auth::user()->id;
+        $data->anggota_id = $post->id_anggota;
+        $data->tgl_kembali = Carbon::now();
+        $data->denda = $post->denda;
+        $data->save();
+        // $pengembalian->id_pengembalian = 'kembali'. $data->id;
+        // $pengembalian->save();
+        $banyak_buku = DetailPeminjaman::with('peminjaman', 'buku')->where('id_peminjaman', $id_peminjaman)->count();
+        Peminjaman::find($id_peminjaman)->delete();
         DetailPeminjaman::where('id_peminjaman', $id_peminjaman)->delete();
         if($post->id_isbn != 0){
             if(!empty($post->id_isbn1)){
-                DB::table('detail_pengembalian')->insert([
-                    'id_pengembalian' => 'kembali'. $data->id,
-                    'no_isbn' => $post->id_isbn1,
+                DB::table('detailpengembalian_new')->insert([
+                    'pengembalian_id' => 'kembali'. $data->id,
+                    'buku_id' => $post->id_isbn1,
                 ]);
             }
             if(!empty($post->id_isbn2)){
-                DB::table('detail_pengembalian')->insert([
-                    'id_pengembalian' => 'kembali'. $data->id,
-                    'no_isbn' => $post->id_isbn2,
+                DB::table('detailpengembalian_new')->insert([
+                    'pengembalian_id' => 'kembali'. $data->id,
+                    'buku_id' => $post->id_isbn2,
                 ]);
             }
             if(!empty($post->id_isbn3)){
-                DB::table('detail_pengembalian')->insert([
-                    'id_pengembalian' => 'kembali'. $data->id,
-                    'no_isbn' => $post->id_isbn3,
+                DB::table('detailpengembalian_new')->insert([
+                    'pengembalian_id' => 'kembali'. $data->id,
+                    'buku_id' => $post->id_isbn3,
+                ]);
+            }
+            if(!empty($post->id_isbn4)){
+                DB::table('detailpengembalian_new')->insert([
+                    'pengembalian_id' => 'kembali'. $data->id,
+                    'buku_id' => $post->id_isbn4,
+                ]);
+            }
+            if(!empty($post->id_isbn5)){
+                DB::table('detailpengembalian_new')->insert([
+                    'pengembalian_id' => 'kembali'. $data->id,
+                    'buku_id' => $post->id_isbn5,
                 ]);
             }
             

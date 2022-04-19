@@ -8,25 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Pengembalian extends Model
 {
     use HasFactory;
-    protected $table ='pengembalian';
+    protected $table ='pengembalian_new';
     
-    protected $fillable = [
-        'id_peminjaman',
-        'id_petugas',
-        'id_anggota',
-        'tgl_kembali',
-        'denda'
-    ];
+    // protected $fillable = [
+    //     'id_peminjaman',
+    //     'id_petugas',
+    //     'id_anggota',
+    //     'tgl_kembali',
+    //     'denda'
+    // ];
 
     public function petugas(){
-        return $this->belongsTo(Petugas::class, 'id_petugas');
+        return $this->belongsTo(User::class, 'petugas_id');
     }
 
     public function anggota(){
-        return $this->belongsTo(Anggota::class, 'id_anggota');
+        return $this->belongsTo(Anggota::class, 'anggota_id');
     }
 
-    public function user(){
-        return $this->belongsTo(User::class, 'id_petugas');
+    public function peminjaman(){
+        return $this->belongsTo(Peminjaman::class, 'peminjaman_id');
     }
 }

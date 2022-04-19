@@ -24,6 +24,23 @@
 <div class="section-body">
     <div class="card">
         <div class="card-body">
+            <div class="card-header">
+                <div class="alert alert-primary alert-has-icon alert-lg">
+                  <div class="alert-icon">
+                    <i class="far fa-user-circle"></i>
+                  </div>
+                  <div class="alert-body">
+                    <div class="alert-title">Nama Peminjam:
+                        {{$peminjaman->anggota->nama_anggota}}
+                    </div>
+                  </div>
+                </div>
+                <div class="ml-auto w-0">
+                    <a href="#" class="btn btn-icon icon-left btn-primary" style="margin-left: 25px" data-toggle="modal" data-target="#exampleModal">
+                        <i class="far fa-edit"></i>Input Buku
+                    </a>
+                </div>
+              </div>
             <div class="table-responsive">
                 <div class="section-title mt-0">Data Peminjaman</div>
                 @if(count($errors) > 0)
@@ -46,31 +63,25 @@
                     </div>
                 </div>
                 @endif
-                <div class="button">
-                    <a href="#" class="btn btn-icon icon-left btn-primary" style="margin-left: 25px" data-toggle="modal" data-target="#exampleModal">
-                        <i class="far fa-edit"></i>Input Buku
-                    </a>
-                </div>
-                <br>
                 <table id="id" class="table table-bordered responsive">
                     <thead>
                         <tr>
-                            <th class="text-center" scope="col">ID Peminjaman</th>
+                            <th class="text-center" scope="col">No. ISBN</th>
                             <th class="text-center" scope="col">Buku</th>
                             {{-- <th class="text-center" scope="col">Aksi</th> --}}
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($detailpeminjaman as $data)
+                        @foreach($data as $a)
                         <tr class="text-center">
-                            <td>{{ $data->id_peminjaman }}</td>
-                            <td>{{ $data->judul_buku }}</td>
+                            <td>{{ $a->buku->no_isbn }}</td>
+                            <td>{{ $a->buku->judul_buku }}</td>
                             {{-- <td>
                                 <a href="" data-toggle="modal" data-keyboard="false" data-backdrop="false" data-target="#edit_buku{{$data->id_peminjaman}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a>
                             </td> --}}
                         </tr>
                                {{-- Modal Edit Peminjaman --}}
-                               <div class="modal fade" id="edit_buku{{$data->id_peminjaman}}" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false" tabindex="-1">
+                               <div class="modal fade" id="edit_buku{{$a->id_peminjaman}}" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false" tabindex="-1">
                                 <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
@@ -79,7 +90,7 @@
                                 </button>
                                 </div>
                                 <form method="POST" action="{{route('update.detail.pinjam')}}" enctype="multipart/form-data">
-                                <input type="hidden" name="id" value="{{$data->id_peminjaman}}">
+                                <input type="hidden" name="id" value="{{$a->id_peminjaman}}">
                                     <div class="modal-body">
                                         @csrf
                                         {{method_field('PUT')}}
@@ -88,11 +99,11 @@
                                                     <div class="col-sm-12">
                                                         <select class="form-control js-example-basic-single" name="no_isbn">
                                                     
-                                                            @foreach($id as $a)
-                                                                @if($a->no_isbn == $data->no_isbn) 
-                                                                <option selected value="{{ $a->no_isbn }}">{{ $a->no_isbn }} - {{ $a->judul_buku }}</option>
+                                                            @foreach($buku as $a)
+                                                                @if($a->id == $a->buku_id) 
+                                                                <option selected value="{{ $a->id }}">{{ $a->no_isbn }} - {{ $a->judul_buku }}</option>
                                                                 @else  
-                                                                <option value="{{ $a->no_isbn }}">{{ $a->no_isbn }} - {{ $a->judul_buku }} </option>
+                                                                <option value="{{ $a->id }}">{{ $a->no_isbn }} - {{ $a->judul_buku }} </option>
                                                                 @endif
                                                             @endforeach
                                                         </select>
@@ -136,14 +147,14 @@
             <form action="{{ route('insertDetail') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-body">
-                    <input id="id_peminjaman" type="hidden" class="form-control " name="id_peminjaman" value="{{ $peminjaman[0]->id_peminjaman }}"> 
+                    <input id="id_peminjaman" type="hidden" class="form-control " name="id_peminjaman" value="{{ $peminjaman->id }}"> 
                     <div class="form-group">
                         <label>Buku</label>
                             <div class="col-sm-12">
-                                <select class="form-control" name="no_isbn">
+                                <select class="form-control js-example-basic-single" name="no_isbn">
                                     <option value="">Buku</option>
-                                    @foreach($id as $buku)   
-                                    <option value="{{ $buku->no_isbn }}">{{ $buku->judul_buku }}</option>
+                                    @foreach($buku as $a)   
+                                    <option value="{{ $a->id }}">{{$a->no_isbn}} - {{ $a->judul_buku }}</option>
                                     @endforeach
                                 </select>
                             </div>

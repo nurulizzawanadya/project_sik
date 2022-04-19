@@ -1,42 +1,72 @@
-@extends('user/dashboard-user')
+@extends('layout/main_layout')
 
-{{-- @section('title', 'Input Data Pengunjung') --}}
+@section('title', 'Data Anggots')
 
 @section('css_custom')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
-{{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+@endsection
+
+@section('breadcrumb')
+<div class="section-header section-title-mt-0">
+    <h1>Data Pengunjung</h1>
+    <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item"><a href="{{ url('halaman-admin') }}">Dashboard</a></div>
+        
+    </div>
+</div>
 @endsection
 
 @section('content')
 <div class="section-body">
             <div class="card">
+                <div class="card-header">
+                    {{-- <h3>Data Pengunjung Perpustaakaan SD UPT 8</h3> --}}
+                <div class="ml-auto w-0">
+                    <div class="dropdown d-inline">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Export Rekap
+                        </button>
+                        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
+                          
+                            <a href='{{route('exportAll')}}' class="dropdown-item has-icon"
+                                ><i class="fas fa-user-cog"></i> Semua Data</a>
+                        
+                            <a href='/admin/change-role-user/2' class="dropdown-item has-icon" data-toggle="modal" data-target="#tgl"
+                                ><i class="fas fa-user-shield"></i> Tanggal Tertentu</a>
+                        
+                
+                        </div>
+                    </div>
+                </div>
+                </div>
                 <div class="card-body">
             <div class="table-responsive">
-                <div class="section-title mt-0">Data Siswa</div>
-                <table id="id" class="table table-bordered responsive">
+                
+                <table id="id" class="table table-striped responsive">
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">#</th>
-                            <th class="text-center" scope="col">NISN</th>
-                            <th class="text-center" scope="col">Nama</th>
-                            <th class="text-center" scope="col">Jenis Kelamin</th>
-                            <th class="text-center" scope="col">Kelas</th>
-                            <th class="text-center" scope="col">Detail</th>
-                            <th class="text-center" scope="col">Aksi</th>
+                            <th scope="col">ID Anggota</th>
+                            <th scope="col">Nama Anggota</th>
+                            <th scope="col">Tanggal Berkunjung</th>
+
+                            <th scope="col">Aksi</th>
+                        
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($data as $a)
                         <tr class="text-center">
                             <td> {{$loop->iteration}}</td>
-                            <td>{{ $a->id_pengembalian }}</td>
-                            <td>{{ $a->id_peminjaman }}</td>
-                            <td>{{ $a->user->name}}</td>
-                            <td>{{ $a->anggota->nama_anggota}}</td>
-                            <td>{{ date('d M Y', strtotime($a->tgl_kembali)) }}</td>
-                            <td>Rp {{ $a->denda }} ,-</td>
+                            <td>{{ $a->anggota_id }}</td>
+                            <td>{{ $a->anggota->nama_anggota }}</td>
+                            <td>{{date('d M Y', strtotime($a->created_at) )}}
+                            {{-- <td>{{ $a->alamat_anggota}}</td>
+                            <td>@if($a->status_anggota == 0) Tidak Aktif @else Aktif @endif</td>
+                            <td>@if($a->jenis_anggota == 0) Guru @else Siswa @endif</td>
+                             --}}
                             <td>
-                                <a href="/detail-pengembalian/{{ $a->id_pengembalian }}" class="btn btn-icon btn-success">Detail Pengembalian</a>
+                                <a href="{{route('insert_pengunjung.store', ['id' => $a->anggota_id])}}" class="btn btn-icon btn-warning">Input</a>
                             </td>
                         </tr>
                         @endforeach
@@ -46,19 +76,16 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('script')
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
 $(document).ready( function () {
     $('#id').DataTable();
-    // $(document).ready(function() {
-    //     $('.js-example-basic-single').select2();
-    // });
 } );
 
 </script>

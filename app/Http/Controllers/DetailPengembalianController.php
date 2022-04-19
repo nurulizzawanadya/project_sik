@@ -14,9 +14,9 @@ use App\Models\Buku;
 
 class DetailPengembalianController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $detail = DetailPengembalian::all();
+        $detail = DetailPengembalian::where('pengembalian_id', 'kembali'.$id)->get();
         // dd($detail);
         view()->share([
             'detail' => $detail

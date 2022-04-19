@@ -8,14 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Buku extends Model
 {
     use HasFactory;
-    protected $table='buku';
-    protected $primaryKey = 'no_isbn';
+    protected $table='bukunew';
+    // protected $primaryKey = 'no_isbn';
+    // protected $fillable=[
+    //     'penerbit',
+    // ];
 
     public function pinjam(){
-        return $this->hasMany(DetailPeminjaman::class, 'no_isbn');
+        return $this->hasMany(DetailPeminjaman::class, 'id');
     }
 
     public function balik(){
-        return $this->hasMany(DetailPengembalian::class, 'no_isbn', 'judul_buku');
+        return $this->hasMany(DetailPengembalian::class, 'id');
     }
 }

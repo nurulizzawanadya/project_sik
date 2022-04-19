@@ -48,7 +48,7 @@
                     </div>
                 @endif
                 <div class="button">
-                    <a href="#" class="btn btn-icon icon-left btn-primary" style="margin-left: 45px" data-toggle="modal" data-target="#exampleModal">
+                    <a href="{{route('create')}}" class="btn btn-icon icon-left btn-primary" style="margin-left: 45px">
                         <i class="far fa-edit"></i>Input Peminjaman
                     </a>
                 </div>
@@ -56,7 +56,7 @@
                 <table id="id" class="table table-bordered responsive">
                     <thead>
                         <tr>
-                            <th class="text-center" scope="col">ID Peminjaman</th>
+                            <th class="text-center" scope="col">#</th>
                             <th class="text-center" scope="col">Nama Peminjam</th>
                             <th class="text-center" scope="col">Tanggal Pinjam</th>
                             <th class="text-center" scope="col">Wajib Kembali</th>
@@ -68,13 +68,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($peminjaman as $data)
+                        @foreach($data as $data)
                         <tr class="text-center">
-                            <td>{{ $data->id_peminjaman }}</td>
-                            <td>{{ $data->nama_anggota }}</td>
+                           <td> {{ $loop->iteration}}</td>
+                            <td>{{ $data->anggota->nama_anggota }}</td>
                             <td>{{date('d M Y', strtotime($data->created_at))}}</td>
                             <td>{{date('d M Y', strtotime($data->tgl_wajib_kembali))}}</td>
-                            <td>{{ $data->nama_petugas }}</td>
+                            <td>{{ $data->user->name }}</td>
                             <td class="text-center" scope="col">
                                 @if($data->perpanjangan == 0)
                                 <div class="dropdown d-inline">
@@ -93,10 +93,10 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="/detail-peminjaman/{{ $data->id_peminjaman }}" class="btn btn-icon btn-success">Detail Peminjaman</a>
+                                <a href="/detail-peminjaman/{{ $data->id }}" class="btn btn-icon btn-success">Detail Peminjaman</a>
                             </td>
                             <td>
-                                <a href="/cek-pengembalian/{{ $data->id_peminjaman }}" class="btn btn-icon btn-warning">Dikembalikan</a>
+                                <a href="/cek-pengembalian/{{ $data->id }}" class="btn btn-icon btn-warning">Dikembalikan</a>
                             </td>
                             <td>
                                 {{-- <a href="{{route('editpinjam', ['id' => $data->id_peminjaman])}}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a> --}}
@@ -125,11 +125,11 @@
                                                 <div class="col-sm-12">
                                                     <select class="form-control js-example-basic-single" name="id_anggota">
                                                 
-                                                        @foreach($id as $anggota)
-                                                            @if($anggota->id_anggota == $data->id_anggota) 
-                                                            <option selected value="{{ $anggota->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
+                                                        @foreach($anggota as $a)
+                                                            @if($a->id_anggota == $data->anggota_id) 
+                                                            <option selected value="{{ $a->id_anggota }}">{{ $a->id_anggota }} - {{ $a->nama_anggota }}</option>
                                                             @else  
-                                                            <option value="{{ $anggota->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
+                                                            <option value="{{ $a->id_anggota }}">{{ $a->id_anggota }} - {{ $a->nama_anggota }}</option>
                                                             @endif
                                                         @endforeach
                                                     </select>
@@ -171,9 +171,8 @@
         </div>
     </div>
 </div>
-@endsection
 
-<div class="modal fade" role="dialog" id="exampleModal" aria-hidden="true">
+{{-- <div class="modal fade" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -191,8 +190,8 @@
                             <div class="col-sm-12">
                                 <select class="form-control js-example-basic-single" name="id_anggota">
                                     <option value="">peminjam</option>
-                                    @foreach($id as $anggota)   
-                                    <option value="{{ $anggota->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
+                                    @foreach($anggota as $c)   
+                                    <option value="{{ $c->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -240,16 +239,17 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
-
+  
         </div>
     </div>
-</div>
-
-<script>
+  </div>
+  
+  <script>
     $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
     })
-</script>
+  </script> --}}
+@endsection
 
 @section('script')
 {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script> --}}

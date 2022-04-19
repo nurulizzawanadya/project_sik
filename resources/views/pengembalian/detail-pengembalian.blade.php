@@ -64,15 +64,15 @@
                     document.getElementById('pengembalian-form').submit();">
                         <i class="fas fa-undo-alt"></i>Dikembalikan
                     </a>
-                    <form id="pengembalian-form" action="{{ route('pengembalian', ['id' => $data2->id_peminjaman]) }}" method="POST" class="d-none">
+                    <form id="pengembalian-form" action="{{ route('pengembalian', ['id' => $data2->id]) }}" method="POST" class="d-none">
                         @csrf
                         <input type="hidden" name="denda" value="{{$denda}}">
-                        <input type="hidden" name="id_anggota" value="{{$data2->id_anggota}}">
+                        <input type="hidden" name="id_anggota" value="{{$data2->anggota_id}}">
                         @if($byk_buku != 0)
                             {{-- @for($i=1; $i<=$byk_buku; $i++) --}}
                             <input type="hidden" name="id_isbn" value=1>
                             @foreach($data as $a)
-                            <input type="hidden" name="id_isbn{{$loop->iteration}}" value="{{$a->no_isbn}}">
+                            <input type="hidden" name="id_isbn{{$loop->iteration}}" value="{{$a->buku_id}}">
                             @endforeach
                         @else
                             <input type="hidden" name="id_isbn" value=0>
@@ -91,7 +91,7 @@
                     <tbody>
                         @foreach($data as $a)
                         <tr class="text-center">
-                            <td>{{ $a->no_isbn}}</td>
+                            <td>{{ $a->buku->no_isbn}}</td>
                             <td>{{ $a->buku->judul_buku }}</td>
                             {{-- <td>
                                 <a href="#" class="btn btn-icon btn-success">Dikembalikan</a>
