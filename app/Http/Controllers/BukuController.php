@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use Illuminate\Http\Request;
+Use Alert;
 
 class BukuController extends Controller
 {
@@ -28,7 +29,7 @@ class BukuController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -39,7 +40,15 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Buku();
+        $data->no_isbn = $request->no_isbn;
+        $data->kategori = $request->kategori;
+        $data->penerbit = $request->penerbit;
+        $data->judul_buku = $request->judul_buku;
+        $data->tahun_terbit = $request->tahun_terbit;
+        $data->save();
+        return redirect()->route('buku')
+        ->with('toast_success', 'Data Buku Berhasil ditambahkan!');
     }
 
     /**
@@ -59,9 +68,14 @@ class BukuController extends Controller
      * @param  \App\Models\Buku  $buku
      * @return \Illuminate\Http\Response
      */
-    public function edit(Buku $buku)
+    public function edit($id, Buku $buku)
     {
-        //
+        $data = Buku::find($id);
+        view()->share([
+            'data' => $data
+        ]);
+        return view('buku.edit');
+
     }
 
     /**
@@ -71,9 +85,17 @@ class BukuController extends Controller
      * @param  \App\Models\Buku  $buku
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Buku $buku)
+    public function update($id, Request $request, Buku $buku)
     {
-        //
+        $data = Buku::find($id);
+        $data->no_isbn = $request->no_isbn;
+        $data->kategori = $request->kategori;
+        $data->penerbit = $request->penerbit;
+        $data->judul_buku = $request->judul_buku;
+        $data->tahun_terbit = $request->tahun_terbit;
+        $data->save();
+        return redirect()->route('buku')
+        ->with('toast_success', 'Data Buku Berhasil diupdate!');
     }
 
     /**
@@ -84,6 +106,12 @@ class BukuController extends Controller
      */
     public function destroy(Buku $buku)
     {
-        //
+        $data = Buku::find($id);
+        \App\Models\DetailPeminjaman::where('buku_id', $id)->delete();
+        \App\Models\DetailPengembalian::where('buku_id', $id)->delete();
+        $data->delete();
+        return redirect()->route('buku')
+        ->with('toast_success', 'Data Buku Berhasil dihapus!');
+
     }
 }

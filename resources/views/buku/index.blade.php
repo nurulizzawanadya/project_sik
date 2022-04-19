@@ -14,7 +14,7 @@
     <h1>Data Buku</h1>
     <div class="section-header-breadcrumb">
         <div class="breadcrumb-item"><a href="/dashboard">Dashboard</a></div>
-        <div class="breadcrumb-item active">Data Peminjaman</div>
+        <div class="breadcrumb-item active">Data Buku</div>
     </div>
 </div>
 @endsection
@@ -22,9 +22,9 @@
 @section('content')
 <div class="section-body">
     <div class="card">
-        <div class="card-header">
+        {{-- <div class="card-header">
             <h4>Card Create by @bayuhnm</h4>
-        </div>
+        </div> --}}
         <div class="row row-cols-1 row-cols-md-3 g-4 px-4">
             @foreach($data as $a)
             <div class="col-sm-3 mb-3">
@@ -32,7 +32,7 @@
                 <div class="product-item pb-3">
                     <div class="product-image mt-4">
                         <div class="container" style="background-color:rgb(196, 225, 252); height: 80px;">
-                            <i class="bi bi-apple fa-3x" style="color:cornflowerblue; line-height: 2"></i>
+                            <i class="bi bi-book fa-3x" style="color:cornflowerblue; line-height: 2"></i>
                         </div>
                     </div>
                     <div class="product-details">

@@ -46,7 +46,7 @@
                             <td>@if($a->jenis_anggota == 0) Guru @else Siswa @endif</td>
                             
                             <td>
-                                <a href="{{route('insert_pengunjung.store', ['id' => $a->id_anggota])}}" class="btn btn-icon btn-warning">Input</a>
+                                <a href="{{route('insert_pengunjung.store', ['id' => $a->id_anggota])}}" class="btn btn-icon btn-warning">Masuk</a>
                             </td>
                         </tr>
                         @endforeach
