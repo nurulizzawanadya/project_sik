@@ -7,6 +7,7 @@ use App\Http\Controllers\DetailPeminjamanController;
 use App\Http\Controllers\DetailPengembalianController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\PengunjungController;
+use App\Http\Controllers\BukuController;
 use Carbon\Carbon;
 
 Route::get('/', [AnggotaController::class, 'index'])->name('/');
@@ -20,9 +21,10 @@ Route::get('/halaman-admin', function () {
     return view('dashboard');
 })->name('/halaman-admin')->middleware('auth');
 
-Route::get('/buku', function () {
-    return view('buku.index');
-});
+// Route::get('/buku', function () {
+//     return view('buku.index');
+// });
+Route::get('/buku', [BukuController::class, 'index']);
 
 //peminjaman
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);

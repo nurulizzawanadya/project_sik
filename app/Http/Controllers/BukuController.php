@@ -14,7 +14,11 @@ class BukuController extends Controller
      */
     public function index()
     {
-        //
+        $data = Buku::all();
+        view()->share([
+            'data' => $data
+        ]);
+        return view('buku.index');
     }
 
     /**
