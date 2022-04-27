@@ -13,10 +13,6 @@ use Carbon\Carbon;
 Route::get('/', [AnggotaController::class, 'index'])->name('/');
 Route::get('/data-pengunjung', [PengunjungController::class, 'index'])->name('pengunjung');
 Route::get('/store-pengunjung/{id}', [PengunjungController::class, 'store'])->name('insert_pengunjung.store');
-<<<<<<< HEAD
-=======
-
->>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
 Route::post('/data-pengunjung/exportTgl', [PengunjungController::class, 'export'])->name('exportTgl');
 Route::get('/data-pengunjung/exportAll', [PengunjungController::class, 'exportAll'])->name('exportAll');
 
@@ -27,7 +23,10 @@ Route::get('/halaman-admin', function () {
 // Route::get('/buku', function () {
 //     return view('buku.index');
 // });
+
 Route::get('/buku', [BukuController::class, 'index']);
+Route::get('/addBuku', [BukuController::class, 'create'])->name('buku.add');
+Route::post('/insertBuku', [BukuController::class, 'store'])->name('insertBuku');
 
 //peminjaman
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);
