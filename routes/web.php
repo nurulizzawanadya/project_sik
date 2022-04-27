@@ -10,7 +10,11 @@ use App\Http\Controllers\PengunjungController;
 use Carbon\Carbon;
 
 Route::get('/', [AnggotaController::class, 'index'])->name('/');
+Route::get('/data-pengunjung', [PengunjungController::class, 'index'])->name('pengunjung');
 Route::get('/store-pengunjung/{id}', [PengunjungController::class, 'store'])->name('insert_pengunjung.store');
+Route::post('/data-pengunjung/exportTgl', [PengunjungController::class, 'export'])->name('exportTgl');
+Route::get('/data-pengunjung/exportAll', [PengunjungController::class, 'exportAll'])->name('exportAll');
+
 Route::get('/halaman-admin', function () {
     return view('dashboard');
 })->name('/halaman-admin')->middleware('auth');
@@ -26,7 +30,7 @@ Route::get('/update-perpanjangan/{id}/value', [PeminjamanController::class, 'upd
 Route::get('/reset', [PeminjamanController::class, 'reset']);
 
 //detail-peminjaman
-Route::get('/detail-peminjaman/{id_peminjaman}', [DetailPeminjamanController::class, 'index']);
+Route::get('/detail-peminjaman/{id}', [DetailPeminjamanController::class, 'index'])->name('detail.peminjaman');
 Route::post('/insertDetail', [DetailPeminjamanController::class, 'insertDetail'])->name('insertDetail');
 Route::get('/cek-pengembalian/{id_peminjaman}', [DetailPeminjamanController::class, 'cek']);
 Route::put('/update-detail-peminjaman', [DetailPeminjamanController::class, 'update'])->name('update.detail.pinjam');

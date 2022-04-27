@@ -9,7 +9,7 @@
 <div class="section-body">
     <div class="card">
         <div class="card-header">
-            <h4>Example Card</h4>
+            <h4>Menu</h4>
         </div>
         <div class="card-body">
             <div class="row">
@@ -42,24 +42,26 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-warning">
-                            <i class="far fa-file"></i>
+                            <a href="{{ url('/pengembalian') }}">
+                                <i class="fas fa-file"></i>
+                            </a>
                         </div>
                         <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Buku</h4>
-                            </div>
+                            <br><br>
+                            <h6>BUKU</h6>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-success">
-                            <i class="fas fa-circle"></i>
+                            <a href="{{ url('/pengembalian') }}">
+                                <i class="fas fa-circle"></i>
+                            </a>
                         </div>
                         <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Laporan Peminjaman</h4>
-                            </div>
+                            <br><br>
+                            <h6>DATA PENGUNJUNG</h6>
                         </div>
                     </div>
                 </div>
