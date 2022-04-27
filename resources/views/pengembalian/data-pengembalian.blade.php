@@ -27,8 +27,7 @@
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">#</th>
-                            <th class="text-center" scope="col">ID Pengembalian</th>
-                            <th class="text-center" scope="col">ID Peminjaman</th>
+                            {{-- <th class="text-center" scope="col">ID Peminjaman</th> --}}
                             <th class="text-center" scope="col">Nama Petugas</th>
                             <th class="text-center" scope="col">Peminjam</th>
                             <th class="text-center" scope="col">Tanggal Kembali</th>
@@ -40,14 +39,13 @@
                         @foreach($data as $a)
                         <tr class="text-center">
                             <td> {{$loop->iteration}}</td>
-                            <td>{{ $a->id_pengembalian }}</td>
-                            <td>{{ $a->id_peminjaman }}</td>
-                            <td>{{ $a->user->name}}</td>
+                            {{-- <td>{{ $a->peminjaman_id }}</td> --}}
+                            <td>{{ $a->petugas->name}}</td>
                             <td>{{ $a->anggota->nama_anggota}}</td>
                             <td>{{ date('d M Y', strtotime($a->tgl_kembali)) }}</td>
                             <td>Rp {{ $a->denda }} ,-</td>
                             <td>
-                                <a href="/detail-pengembalian/{{ $a->id_pengembalian }}" class="btn btn-icon btn-success">Detail Pengembalian</a>
+                                <a href="/detail-pengembalian/{{ $a->id }}" class="btn btn-icon btn-success">Detail Pengembalian</a>
                             </td>
                         </tr>
                         @endforeach

@@ -45,7 +45,11 @@
           </form>
       </div>
       <div class="modal-footer">
+<<<<<<< HEAD
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Lihat Data</button>
+=======
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+>>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
         <button type="button" class="btn btn-primary"  onclick="event.preventDefault();
         document.getElementById('exportgl').submit();">Export to Excel</button>
       </div>
@@ -53,8 +57,11 @@
   </div>
 </div> 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
       @include('layout.footer')
     </div>
   </div>

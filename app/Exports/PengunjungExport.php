@@ -4,8 +4,21 @@ namespace App\Exports;
 
 use App\Models\Pengunjung;
 use Maatwebsite\Excel\Concerns\FromCollection;
+<<<<<<< HEAD
 
 class PengunjungExport implements FromCollection
+=======
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\WithTitle;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+
+class PengunjungExport implements FromCollection, WithMapping, WithHeadings, ShouldAutoSize, WithEvents, WithTitle, WithStyles
+>>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -23,9 +36,56 @@ class PengunjungExport implements FromCollection
         if($this->tgl_start == 0 || $this->tgl_end == 0)
             return Pengunjung::all();
         else
+<<<<<<< HEAD
             return Pengunjung::whereBetween('created_at', [$this->tgl_start, $this->tgl_end])->get();
             // return Pengunjung::where('created_at', new DateTime($this->tgl_start))->where('created_at', new DateTime($this->tgl_end))->first();
     }
+=======
+            return Pengunjung::whereBetween('tgl_berkunjung', [$this->tgl_start, $this->tgl_end])->get();
+            // return Pengunjung::where('created_at', new DateTime($this->tgl_start))->where('created_at', new DateTime($this->tgl_end))->first();
+    }
+    public function map($a) : array {
+        return [
+            $a->id,
+            $a->anggota_id,
+            $a->anggota->nama_anggota,
+            date('d M Y', strtotime($a->created_at)),
+        ] ;
+    }
+
+    public function headings() : array {
+        return [
+           '#',
+           'ID Anggota',
+           'Nama Anggota',
+           'Tanggal Berkunjung',
+        ] ;
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            // Handle by a closure.
+            BeforeExport::class => function(BeforeExport $event) {
+                $event->writer->getProperties()->setTitle('Patrick');
+            },
+        ];
+    }
+
+
+    public function title(): string
+    {
+    	return 'Rekap Data Pengunjung';
+        // 'Rekap '.$nama.'.xlsx'
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+
+        $sheet->getStyle(1)->getFont()->setBold(true);
+
+    }
+>>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
 
 
 }

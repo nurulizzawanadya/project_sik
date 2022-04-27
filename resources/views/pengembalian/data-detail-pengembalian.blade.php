@@ -27,7 +27,7 @@
                 <table id="id" class="table table-bordered responsive">
                     <thead>
                         <tr>
-                            <th class="text-center" scope="col">ID Pengembalian</th>
+                            <th class="text-center" scope="col">No. ISBN</th>
                             <th class="text-center" scope="col">Buku</th>
                             <th class="text-center" scope="col">Status Kembali</th>
                         </tr>
@@ -35,8 +35,8 @@
                     <tbody>
                         @foreach($detail as $data)
                         <tr class="text-center">
-                            <td>{{ $data->id_pengembalian }}</td>
-                            <td>{{ $data->getParent()->judul_buku }}</td>
+                            <td>{{ $data->buku->no_isbn }}</td>
+                            <td>{{ $data->buku->judul_buku }}</td>
                             <td>
                                 @if($data->status_kembali == 0)
                                     <span class="badge badge-warning">Belum Kembali</span>

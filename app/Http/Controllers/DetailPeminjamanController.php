@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use App\Models\DetailPeminjaman;
+use App\Models\Buku;
 use App\Models\Peminjaman;
 
 class DetailPeminjamanController extends Controller
@@ -16,36 +17,30 @@ class DetailPeminjamanController extends Controller
     
     public function index($id)
     {
-        $peminjaman = DB::table('peminjaman')->where('id_peminjaman', $id)->get();
-        $detailpeminjaman = DB::table('detail_peminjaman')->where('id_peminjaman', $id)
-        ->join ('buku', 'detail_peminjaman.no_isbn', '=', 'buku.no_isbn')
-        ->get();
+        $data = DetailPeminjaman::with('buku')->where('id_peminjaman', $id)->get();
+        $peminjaman = Peminjaman::find($id);
+        $buku = Buku::all();
+        view()->share([
+            'data' => $data,
+            'buku' => $buku,
+            'peminjaman' => $peminjaman
+        ]);
 
-        $id = DB::table('buku')->get();
-
-        $data = array(
-            'menu' => 'Peminjaman',
-            'peminjaman' => $peminjaman,
-            'detailpeminjaman' => $detailpeminjaman,
-            'id' => $id,
-            'submenu' => '',
-        );
-
-        return view('peminjaman/detail-peminjaman', $data);
+        return view('peminjaman/detail-peminjaman');
     }
 
     public function insertDetail(Request $request)
     {
-        DB::table('detail_peminjaman')->insert([
+        DB::table('detailpeminjaman_new')->insert([
             'id_peminjaman' => $request->id_peminjaman,
-            'no_isbn' => $request->no_isbn,
+            'buku_id' => $request->no_isbn,
         ]);
         
-        return redirect('/detail-peminjaman/'.$request->id_peminjaman);
+        return redirect()->route('detail.peminjaman', ['id' => $request->id_peminjaman]);
     }
 
     public function cek($id){
-        $data = Peminjaman::with('anggota')->where('id_peminjaman', $id)->first();
+        $data = Peminjaman::find($id);
         $peminjaman = DetailPeminjaman::where('id_peminjaman', $id)->get();
         $banyak_buku = DetailPeminjaman::with('peminjaman', 'buku')->where('id_peminjaman', $id)->count();
         $deadline = Carbon::parse($data->tgl_wajib_kembali);

@@ -48,7 +48,7 @@
                     </div>
                 @endif
                 <div class="button">
-                    <a href="#" class="btn btn-icon icon-left btn-primary" style="margin-left: 45px" data-toggle="modal" data-target="#exampleModal">
+                    <a href="{{route('create')}}" class="btn btn-icon icon-left btn-primary" style="margin-left: 45px">
                         <i class="far fa-edit"></i>Input Peminjaman
                     </a>
                 </div>
@@ -125,11 +125,17 @@
                                                 <div class="col-sm-12">
                                                     <select class="form-control js-example-basic-single" name="id_anggota">
                                                 
+<<<<<<< HEAD
                                                         @foreach($anggota as $anggota)
                                                             @if($anggota->id_anggota == $data->anggota_id) 
                                                             <option selected value="{{ $anggota->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
+=======
+                                                        @foreach($anggota as $a)
+                                                            @if($a->id_anggota == $data->anggota_id) 
+                                                            <option selected value="{{ $a->id_anggota }}">{{ $a->id_anggota }} - {{ $a->nama_anggota }}</option>
+>>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
                                                             @else  
-                                                            <option value="{{ $anggota->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
+                                                            <option value="{{ $a->id_anggota }}">{{ $a->id_anggota }} - {{ $a->nama_anggota }}</option>
                                                             @endif
                                                         @endforeach
                                                     </select>
@@ -172,7 +178,11 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <div class="modal fade" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false">
+=======
+{{-- <div class="modal fade" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false">
+>>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -189,10 +199,17 @@
                         <label>Nama Anggota</label>
                             <div class="col-sm-12">
                                 <select class="form-control js-example-basic-single" name="id_anggota">
+<<<<<<< HEAD
                                     {{-- <option value="">peminjam</option>
                                     @foreach($anggota as $c)   
                                     <option value="{{ $c->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
                                     @endforeach --}}
+=======
+                                    <option value="">peminjam</option>
+                                    @foreach($anggota as $c)   
+                                    <option value="{{ $c->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
+                                    @endforeach
+>>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
                                 </select>
                             </div>
                             @error('id_anggota')
@@ -248,7 +265,11 @@
     $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
     })
+<<<<<<< HEAD
   </script>
+=======
+  </script> --}}
+>>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
 @endsection
 
 @section('script')

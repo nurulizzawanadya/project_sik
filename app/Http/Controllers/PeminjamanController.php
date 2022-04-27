@@ -32,6 +32,22 @@ class PeminjamanController extends Controller
         ]);
 
         return view('peminjaman/data-peminjaman');
+<<<<<<< HEAD
+=======
+    }
+
+    public function create()
+    {
+        $anggota = Anggota::all();
+        $buku = Buku::all();
+        view()->share([
+          
+            'anggota' => $anggota,
+            'buku' => $buku
+        ]);
+
+        return view('peminjaman/add');
+>>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
     }
 
     public function insertPeminjaman(Request $post)

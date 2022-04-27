@@ -1,17 +1,17 @@
 <div class="navbar-bg"></div>
     <nav class="navbar navbar-expand-lg main-navbar">
-    <a href="{{ url('halaman-admin') }}" class="navbar-brand sidebar-gone-hide">PERPUSTAKAAN UPT 8</a>
+    <a href="{{ url('/') }}" class="navbar-brand sidebar-gone-hide">PERPUSTAKAAN UPT 8</a>
     <div class="navbar-nav">
         <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
     </div>
     <div class="nav-collapse">
     </div>
     <form class="form-inline ml-auto">
-        <ul class="navbar-nav">
+        {{-- <ul class="navbar-nav">
             <li>
                 <a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a>
             </li>
-        </ul>
+        </ul> --}}
     </form>
     <ul class="navbar-nav navbar-right">
      
