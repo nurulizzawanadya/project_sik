@@ -3,10 +3,10 @@
 @section('title', 'Peminjaman')
 
 @section('css_custom')
-{{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"> --}}
-{{-- <link rel="stylesheet" href="{{ asset('asset/node_modules/select2/dist/css/select2.min.css') }}"> --}}
+
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 @endsection
 
 @section('breadcrumb')
@@ -125,15 +125,9 @@
                                                 <div class="col-sm-12">
                                                     <select class="form-control js-example-basic-single" name="id_anggota">
                                                 
-<<<<<<< HEAD
-                                                        @foreach($anggota as $anggota)
-                                                            @if($anggota->id_anggota == $data->anggota_id) 
-                                                            <option selected value="{{ $anggota->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
-=======
                                                         @foreach($anggota as $a)
                                                             @if($a->id_anggota == $data->anggota_id) 
                                                             <option selected value="{{ $a->id_anggota }}">{{ $a->id_anggota }} - {{ $a->nama_anggota }}</option>
->>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
                                                             @else  
                                                             <option value="{{ $a->id_anggota }}">{{ $a->id_anggota }} - {{ $a->nama_anggota }}</option>
                                                             @endif
@@ -164,7 +158,7 @@
                             <button type="submit" class="btn btn-primary">Update Peminjaman</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             {{-- <a href="/user/profile/edit" class="btn btn-primary">Edit Profil</a> --}}
-                            </div>
+                         </div>
                         </form>
                             </div>
                             </div>
@@ -178,110 +172,30 @@
     </div>
 </div>
 
-<<<<<<< HEAD
-<div class="modal fade" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false">
-=======
-{{-- <div class="modal fade" role="dialog" id="exampleModal" aria-hidden="true" data-backdrop="false">
->>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">{{__('Input Peminjaman') }}</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('insertPeminjaman') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <input id="id_peminjaman" type="hidden" class="form-control " name="id_peminjaman"> 
-                    <div class="form-group">
-                        <label>Nama Anggota</label>
-                            <div class="col-sm-12">
-                                <select class="form-control js-example-basic-single" name="id_anggota">
-<<<<<<< HEAD
-                                    {{-- <option value="">peminjam</option>
-                                    @foreach($anggota as $c)   
-                                    <option value="{{ $c->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
-                                    @endforeach --}}
-=======
-                                    <option value="">peminjam</option>
-                                    @foreach($anggota as $c)   
-                                    <option value="{{ $c->id_anggota }}">{{ $anggota->id_anggota }} - {{ $anggota->nama_anggota }}</option>
-                                    @endforeach
->>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
-                                </select>
-                            </div>
-                            @error('id_anggota')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                    </div>
-                    @for($i = 1; $i<=3; $i++)
-                    <div class="form-group">
-                        <label>Judul Buku {{$i}}</label>
-                            <div class="col-sm-12">
-                                <select class="form-control js-example-basic-single" name="id_isbn{{$i}}">
-                                    <option value="">No. ISBN - Judul Buku</option>
-                                    @foreach($buku as $a)   
-                                    <option value="{{ $a->no_isbn }}">{{$a->no_isbn }} - {{ $a->judul_buku }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            @error('id_isbn{{$i}}')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                    </div>
-                    @endfor 
-                    
-                    <input id="created_at" type="hidden" class="form-control" name="created_at">
-                    <input id="perpanjangan" type="hidden" class="form-control" name="perpanjangan">
-                    <div class="form-group">
-                        <label>Tanggal Harus Kembali</label>
-                            <div class="col-sm-12">
-                                <input id="tgl_wajib_kembali" type="date" class="form-control" name="tgl_wajib_kembali" value="{{ old('tgl_wajib_kembali') }}" required autocomplete="tgl_wajib_kembali" autofocus placeholder="Tanggal wajib kembali..">
-                            </div>
-                            @error('tgl_wajib_kembali')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                    </div>
-                </div>
-                <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
-  
-        </div>
-    </div>
-  </div>
-  
   <script>
     $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
     })
-<<<<<<< HEAD
   </script>
-=======
-  </script> --}}
->>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
 @endsection
 
 @section('script')
-{{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script> --}}
-{{-- <script src="{{ asset('assets/node_modules/js-example-basic-single/dist/js/select2.full.min.js') }} "></script> --}}
+
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
 <script>
 $(document).ready( function () {
     $('#id').DataTable();
+} );
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+$(document).ready( function () {
+    // $('#id').DataTable();
     $(document).ready(function() {
         $('.js-example-basic-single').select2();
     });

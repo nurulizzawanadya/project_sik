@@ -50,7 +50,7 @@
                             <th scope="col">Nama Anggota</th>
                             <th scope="col">Tanggal Berkunjung</th>
 
-                            <th scope="col">Aksi</th>
+                            {{-- <th scope="col">Aksi</th> --}}
                         
                         </tr>
                     </thead>
@@ -65,9 +65,9 @@
                             <td>@if($a->status_anggota == 0) Tidak Aktif @else Aktif @endif</td>
                             <td>@if($a->jenis_anggota == 0) Guru @else Siswa @endif</td>
                              --}}
-                            <td>
+                            {{-- <td>
                                 <a href="{{route('insert_pengunjung.store', ['id' => $a->anggota_id])}}" class="btn btn-icon btn-warning">Masuk</a>
-                            </td>
+                            </td> --}}
                         </tr>
                         @endforeach
                     </tbody>

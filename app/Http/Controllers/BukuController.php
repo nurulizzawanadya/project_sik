@@ -104,7 +104,7 @@ class BukuController extends Controller
      * @param  \App\Models\Buku  $buku
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Buku $buku)
+    public function destroy($id, Buku $buku)
     {
         $data = Buku::find($id);
         \App\Models\DetailPeminjaman::where('buku_id', $id)->delete();

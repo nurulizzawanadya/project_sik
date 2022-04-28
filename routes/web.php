@@ -24,9 +24,12 @@ Route::get('/halaman-admin', function () {
 //     return view('buku.index');
 // });
 
-Route::get('/buku', [BukuController::class, 'index']);
+Route::get('/buku', [BukuController::class, 'index'])->name('buku');
 Route::get('/addBuku', [BukuController::class, 'create'])->name('buku.add');
 Route::post('/insertBuku', [BukuController::class, 'store'])->name('insertBuku');
+Route::get('/editBuku/{id}', [BukuController::class, 'edit'])->name('buku.edit');
+Route::put('/updateBuku/{id}', [BukuController::class, 'update'])->name('buku.update');
+Route::get('/deleteBuku/{id}', [BukuController::class, 'destroy'])->name('buku.delete');
 
 //peminjaman
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);

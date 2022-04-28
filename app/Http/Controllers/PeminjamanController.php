@@ -22,7 +22,8 @@ class PeminjamanController extends Controller
 
     public function index()
     {
-        $data = Peminjaman::all();
+        $data = Peminjaman::with('anggota')->get();
+        // dd($data);
         $anggota = Anggota::all();
         $buku = Buku::all();
         view()->share([
@@ -32,13 +33,12 @@ class PeminjamanController extends Controller
         ]);
 
         return view('peminjaman/data-peminjaman');
-<<<<<<< HEAD
-=======
     }
 
     public function create()
     {
         $anggota = Anggota::all();
+       
         $buku = Buku::all();
         view()->share([
           
@@ -47,7 +47,6 @@ class PeminjamanController extends Controller
         ]);
 
         return view('peminjaman/add');
->>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
     }
 
     public function insertPeminjaman(Request $post)
@@ -59,6 +58,8 @@ class PeminjamanController extends Controller
 
         $data = new Peminjaman();
         $data->anggota_id = $post->id_anggota;
+        $data->tgl_wajib_kembali = $post->tgl_wajib_kembali;
+        $data->perpanjangan = 0;
         $data->petugas_id = Auth::user()->id;
         $data->save();
         if(!empty($post->id_isbn1)){
@@ -83,58 +84,6 @@ class PeminjamanController extends Controller
         
         return redirect()->route('detail.peminjaman', ['id' => $data->id])
         ->with('toast_success', 'Data Peminjaman Berhasil ditambahkan');
-        // $hzz = new Peminjaman();
-        // $petugas = Petugas::where('user_id', Auth::user()->id)->first();
-        // $peminjaman = 'hzzz';
-        // $data = Peminjaman::create([
-        //     'id_peminjaman' => $peminjaman . '' . $hzz->id,
-        //     'id_anggota' => $post->id_anggota,
-        //     'id_petugas' => $petugas->id_petugas,
-        //     'tgl_wajib_kembali' => $post->tgl_wajib_kembali,
-        // ]);
-        
-        // if($data->id >= 1 && $data->id <= 10) $peminjaman = 'pjmn000';
-        // elseif($data->id >= 10 && $data->id <= 100) $peminjaman = 'pjmn00';
-        // elseif($data->id >= 100 && $data->id <= 1000) $peminjaman = 'pjmn0';
-        // elseif($data->id >= 1000 && $data->id <= 10000) $peminjaman = 'pjmn';
-        // // dd($peminjaman . '' . $data->id);
-        // if(!empty($post->id_isbn1)){
-        //     DB::table('detail_peminjaman')->insert([
-        //         'id_peminjaman' => $peminjaman . '' . $data->id,
-        //         'no_isbn' => $post->id_isbn1,
-        //     ]);
-        // }
-        // if(!empty($post->id_isbn2)){
-        //     DB::table('detail_peminjaman')->insert([
-        //         'id_peminjaman' => $peminjaman . '' . $data->id,
-        //         'no_isbn' => $post->id_isbn2,
-        //     ]);
-        // }
-        // if(!empty($post->id_isbn3)){
-        //     DB::table('detail_peminjaman')->insert([
-        //         'id_peminjaman' => $peminjaman . '' . $data->id,
-        //         'no_isbn' => $post->id_isbn3,
-        //     ]);
-        // }
-        
-        // session()->flash('berhasil', 'Data Berhasil Ditambahkan');
-        // // return redirect('/detail-peminjaman/'.$post->id_peminjaman);
-        // return redirect('/peminjaman/'.$post->id_peminjaman);
-        
-        // $data = new Peminjaman;
-        // $data->id_peminjaman = $peminjaman . '' . $data->id;
-        // $data->id_anggota = $post->id_anggota;
-        // $data->id_petugas = $petugas->id_petugas;
-        // $data->tgl_wajib_kembali = $post->tgl_wajib_kembali;
-       
-        // // DB::table('peminjaman')->insert([
-        // //     'id_peminjaman' => $post->id_peminjaman,
-        // //     'id_anggota' => $post->id_anggota,
-        // //     'id_petugas' => $petugas->petugas_id,
-        // //     'created_at' => $post->created_at,
-        // //     'tgl_wajib_kembali' => $post->tgl_wajib_kembali,
-        // // ]);
-        // $data->save();
     }
 
     public function edit($id){
@@ -152,7 +101,7 @@ class PeminjamanController extends Controller
 
     public function update($id, Request $request){
         $data = Peminjaman::findOrFail($id);
-        $data->id_anggota = $request->id_anggota;
+        $data->anggota_id = $request->id_anggota;
         $data->tgl_wajib_kembali = $request->tgl_wajib_kembali;
         $data->save();
         session()->flash('berhasil', 'Data Berhasil Diupdate!');

@@ -13,8 +13,9 @@
 <div class="section-header section-title-mt-0">
     <h1>Data Buku</h1>
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item"><a href="/dashboard">Dashboard</a></div>
-        <div class="breadcrumb-item active">Data Buku</div>
+        {{-- <div class="breadcrumb-item"><a href="/dashboard">Dashboard</a></div>
+        <div class="breadcrumb-item active">Data Buku</div> --}}
+        <a href="/addBuku" class="btn btn-primary">Tambah Buku</a>
     </div>
 </div>
 @endsection
@@ -37,69 +38,50 @@
                     </div>
                     <div class="product-details">
                         <div class="product-name px-3">{{$a->judul_buku}}</div>
-                        <div class="product-review">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="text-muted text-small">100 Sold</div>
+                        <p class="card-text">No. ISBN : {{$a->no_isbn}}</p>
                         <div class="product-cta">
-                            <a href="#" class="btn btn-primary">Detail</a>
+                            <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal{{$a->id}}">Detail</a>
                         </div>
                     </div>
                 </div>
               </div>
             </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal{{$a->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="false" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{$a->judul_buku}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <strong>No. ISBN : </strong>
+                        <br>
+                        <p>{{$a->no_isbn}}</p>
+                        <strong>Kategori : </strong>
+                        <br>
+                        <p>{{$a->kategori}}</p>
+                        <strong>Pengarang : </strong>
+                        <br>
+                        <p>{{$a->pengarang}}</p>
+                        <strong>Penerbit : </strong>
+                        <br>
+                        <p>{{$a->penerbit}}</p>
+                        <strong>Tahun Terbit : </strong>
+                        <br>
+                        <p>{{$a->tahun_terbit}}</p>
+    
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{route('buku.edit', ['id' => $a->id])}}" class="btn btn-warning">Edit Buku</a>
+                        <a href="{{route('buku.delete', ['id' => $a->id])}}" onclick="return confirm('Yakin ingin menghapus buku?')" class="btn btn-danger">Hapus Buku</a href="">
+                    </div>
+                    </div>
+                </div>
+                </div>
             @endforeach
-            {{-- <div class="col">
-                <div class="product-item pb-3">
-                    <div class="product-image">
-                        <div class="container" style="background-color:rgb(255, 233, 193); height: 80px;">
-                            <i class="bi bi-emoji-smile-fill fa-3x" style="color:orange; line-height: 2"></i>
-                        </div>
-                    </div>
-                    <div class="product-details">
-                        <div class="product-name">Full Senyum Masze</div>
-                        <div class="product-review">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="text-muted text-small">100 Sold</div>
-                        <div class="product-cta">
-                            <a href="#" class="btn btn-primary">Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="product-item pb-3">
-                    <div class="product-image">
-                        <div class="container" style="background-color:rgb(212, 205, 255); height: 80px;">
-                            <i class="bi bi-chat-left-quote-fill fa-3x" style="color:slateblue; line-height: 2"></i>
-                        </div>
-                    </div>
-                    <div class="product-details">
-                        <div class="product-name">Mangat Bekk</div>
-                        <div class="product-review">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="text-muted text-small">100 Sold</div>
-                        <div class="product-cta">
-                            <a href="#" class="btn btn-primary">Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
   </div>
 
   </div>

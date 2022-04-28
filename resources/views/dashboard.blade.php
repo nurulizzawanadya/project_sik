@@ -42,7 +42,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-warning">
-                            <a href="{{ url('/pengembalian') }}">
+                            <a href="{{ url('/buku') }}">
                                 <i class="fas fa-file"></i>
                             </a>
                         </div>
@@ -55,7 +55,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-success">
-                            <a href="{{ url('/pengembalian') }}">
+                            <a href="{{ url('/data-pengunjung') }}">
                                 <i class="fas fa-circle"></i>
                             </a>
                         </div>

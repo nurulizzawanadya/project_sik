@@ -4,10 +4,6 @@ namespace App\Exports;
 
 use App\Models\Pengunjung;
 use Maatwebsite\Excel\Concerns\FromCollection;
-<<<<<<< HEAD
-
-class PengunjungExport implements FromCollection
-=======
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -18,7 +14,6 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class PengunjungExport implements FromCollection, WithMapping, WithHeadings, ShouldAutoSize, WithEvents, WithTitle, WithStyles
->>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -36,11 +31,6 @@ class PengunjungExport implements FromCollection, WithMapping, WithHeadings, Sho
         if($this->tgl_start == 0 || $this->tgl_end == 0)
             return Pengunjung::all();
         else
-<<<<<<< HEAD
-            return Pengunjung::whereBetween('created_at', [$this->tgl_start, $this->tgl_end])->get();
-            // return Pengunjung::where('created_at', new DateTime($this->tgl_start))->where('created_at', new DateTime($this->tgl_end))->first();
-    }
-=======
             return Pengunjung::whereBetween('tgl_berkunjung', [$this->tgl_start, $this->tgl_end])->get();
             // return Pengunjung::where('created_at', new DateTime($this->tgl_start))->where('created_at', new DateTime($this->tgl_end))->first();
     }
@@ -85,7 +75,6 @@ class PengunjungExport implements FromCollection, WithMapping, WithHeadings, Sho
         $sheet->getStyle(1)->getFont()->setBold(true);
 
     }
->>>>>>> 987d24a9feae479a35bab7d7d22bbb5cba0eb4b9
 
 
 }
