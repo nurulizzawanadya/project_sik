@@ -43,7 +43,7 @@
                             <td>{{ $a->nama_anggota }}</td>
                             <td>{{ $a->alamat_anggota}}</td>
                             <td>@if($a->status_anggota == 0) Tidak Aktif @else Aktif @endif</td>
-                            <td>@if($a->jenis_anggota == 0) Guru @else Siswa @endif</td>
+                            <td>@if($a->jenis_anggota == 0) Siswa @else Guru @endif</td>
                             
                             <td>
                                 <a href="{{route('insert_pengunjung.store', ['id' => $a->id_anggota])}}" class="btn btn-icon btn-warning">Masuk</a>
