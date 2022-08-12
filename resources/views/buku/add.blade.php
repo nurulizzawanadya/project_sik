@@ -61,6 +61,12 @@
                                     <input type="text" class="form-control" name="tahun_terbit" placeholder="Tahun Terbit">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label>Jumlah Buku</label>
+                                <div class="col-sm-12">
+                                    <input type="number" class="form-control" name="quantity" placeholder="Jumlah Buku">
+                                </div>
+                            </div>
                         <div class="text-left">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save</button>

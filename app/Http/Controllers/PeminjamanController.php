@@ -66,12 +66,18 @@ class PeminjamanController extends Controller
             $detailpeminjaman = new DetailPeminjaman();
             $detailpeminjaman->id_peminjaman = $data->id;
             $detailpeminjaman->buku_id = $post->id_isbn1;
+            $buku = Buku::find($post->id_isbn1);
+            $buku->quantity -= 1;
+            $buku->save();
             $detailpeminjaman->save();
         }
         if(!empty($post->id_isbn2)){
             $detailpeminjaman = new DetailPeminjaman();
             $detailpeminjaman->id_peminjaman = $data->id;
             $detailpeminjaman->buku_id = $post->id_isbn2;
+            $buku =  Buku::find($post->id_isbn2);
+            $buku->quantity -= 1;
+            $buku->save();
             $detailpeminjaman->save();
 
         }
@@ -79,6 +85,9 @@ class PeminjamanController extends Controller
             $detailpeminjaman = new DetailPeminjaman();
             $detailpeminjaman->id_peminjaman = $data->id;
             $detailpeminjaman->buku_id = $post->id_isbn3;
+            $buku = Buku::find($post->id_isbn3);
+            $buku->quantity -= 1;
+            $buku->save();
             $detailpeminjaman->save();
         }
         

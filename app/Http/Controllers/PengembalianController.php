@@ -10,6 +10,7 @@ use App\Models\Detailpengembalian;
 use App\Models\Peminjaman;
 use App\Models\DetailPeminjaman;
 use App\Models\Petugas;
+use App\Models\Buku;
 use Carbon\Carbon;
 
 class PengembalianController extends Controller
@@ -49,30 +50,45 @@ class PengembalianController extends Controller
                     'pengembalian_id' => 'kembali'. $data->id,
                     'buku_id' => $post->id_isbn1,
                 ]);
+                $buku = Buku::find($post->id_isbn1);
+                $buku->quantity += 1;
+                $buku->save();
             }
             if(!empty($post->id_isbn2)){
                 DB::table('detailpengembalian_new')->insert([
                     'pengembalian_id' => 'kembali'. $data->id,
                     'buku_id' => $post->id_isbn2,
                 ]);
+                $buku = Buku::find($post->id_isbn2);
+                $buku->quantity += 1;
+                $buku->save();
             }
             if(!empty($post->id_isbn3)){
                 DB::table('detailpengembalian_new')->insert([
                     'pengembalian_id' => 'kembali'. $data->id,
                     'buku_id' => $post->id_isbn3,
                 ]);
+                $buku = Buku::find($post->id_isbn3);
+                $buku->quantity += 1;
+                $buku->save();
             }
             if(!empty($post->id_isbn4)){
                 DB::table('detailpengembalian_new')->insert([
                     'pengembalian_id' => 'kembali'. $data->id,
                     'buku_id' => $post->id_isbn4,
                 ]);
+                $buku = Buku::find($post->id_isbn4);
+                $buku->quantity += 1;
+                $buku->save();
             }
             if(!empty($post->id_isbn5)){
                 DB::table('detailpengembalian_new')->insert([
                     'pengembalian_id' => 'kembali'. $data->id,
                     'buku_id' => $post->id_isbn5,
                 ]);
+                $buku = Buku::find($post->id_isbn5);
+                $buku->quantity += 1;
+                $buku->save();
             }
             
         }

@@ -72,6 +72,9 @@
                         <strong>Tahun Terbit : </strong>
                         <br>
                         <p>{{$a->tahun_terbit}}</p>
+                        <strong>Jumlah Buku : </strong>
+                        <br>
+                        <p>{{$a->quantity}}</p>
     
                     </div>
                     <div class="modal-footer">

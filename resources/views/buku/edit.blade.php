@@ -8,7 +8,7 @@
 
 @section('breadcrumb')
 <div class="section-header section-title-mt-0">
-    <h1>Tambah Buku</h1>
+    <h1>Edit Buku</h1>
     <div class="section-header-breadcrumb">
         <div class="breadcrumb-item"><a href="/dashboard">Dashboard</a></div>
         <div class="breadcrumb-item active">Data Buku</div>
@@ -60,6 +60,12 @@
                                 <label>Tahun Terbit</label>
                                 <div class="col-sm-12">
                                     <input type="text" class="form-control" name="tahun_terbit" placeholder="Tahun Terbit" value="{{$data->tahun_terbit}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Jumlah Buku</label>
+                                <div class="col-sm-12">
+                                    <input type="number" class="form-control" name="quantity" placeholder="Jumlah Buku" value="{{$data->quantity}}">
                                 </div>
                             </div>
                         <div class="text-left">

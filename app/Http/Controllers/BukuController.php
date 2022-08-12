@@ -46,6 +46,7 @@ class BukuController extends Controller
         $data->penerbit = $request->penerbit;
         $data->judul_buku = $request->judul_buku;
         $data->tahun_terbit = $request->tahun_terbit;
+        $data->quantity = $request->quantity;
         $data->save();
         return redirect()->route('buku')
         ->with('toast_success', 'Data Buku Berhasil ditambahkan!');
@@ -93,6 +94,7 @@ class BukuController extends Controller
         $data->penerbit = $request->penerbit;
         $data->judul_buku = $request->judul_buku;
         $data->tahun_terbit = $request->tahun_terbit;
+        $data->quantity = $request->quantity;
         $data->save();
         return redirect()->route('buku')
         ->with('toast_success', 'Data Buku Berhasil diupdate!');
