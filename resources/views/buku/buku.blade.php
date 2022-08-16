@@ -1,6 +1,6 @@
 @extends('layout/main_layout')
 
-@section('title', 'Data Peminjaman')
+@section('title', 'Data Buku')
 
 @section('css_custom')
 
