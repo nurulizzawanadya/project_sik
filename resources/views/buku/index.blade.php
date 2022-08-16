@@ -15,7 +15,9 @@
     <div class="section-header-breadcrumb">
         {{-- <div class="breadcrumb-item"><a href="/dashboard">Dashboard</a></div>
         <div class="breadcrumb-item active">Data Buku</div> --}}
+        @if(Auth::check())
         <a href="/addBuku" class="btn btn-primary">Tambah Buku</a>
+        @endif
     </div>
 </div>
 @endsection
@@ -77,10 +79,12 @@
                         <p>{{$a->quantity}}</p>
     
                     </div>
+                    @if(Auth::check())
                     <div class="modal-footer">
                         <a href="{{route('buku.edit', ['id' => $a->id])}}" class="btn btn-warning">Edit Buku</a>
                         <a href="{{route('buku.delete', ['id' => $a->id])}}" onclick="return confirm('Yakin ingin menghapus buku?')" class="btn btn-danger">Hapus Buku</a href="">
                     </div>
+                    @endif
                     </div>
                 </div>
                 </div>

@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use Illuminate\Http\Request;
 Use Alert;
+Use Auth;
 
 class BukuController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +24,7 @@ class BukuController extends Controller
         view()->share([
             'data' => $data
         ]);
+        if(Auth::check()) return view('buku.buku');
         return view('buku.index');
     }
 
