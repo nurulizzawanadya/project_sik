@@ -1,4 +1,4 @@
- ## How to run project on local machine
+ ## How to run project on your lovely local machine
  - [x] Clone this repository
  - [x] cd /path-to-your-project
  - [x] composer install
