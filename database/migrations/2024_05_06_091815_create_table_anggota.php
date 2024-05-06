@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestampTodetailpeminjaman extends Migration
+class CreateTableAnggota extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,12 @@ class AddTimestampTodetailpeminjaman extends Migration
      */
     public function up()
     {
-        Schema::table('detail_peminjaman', function (Blueprint $table) {
+        Schema::create('anggota', function (Blueprint $table) {
+            $table->id();
+            $table->char('id_anggota', 5);
+            $table->string('nama_anggota');
+            $table->string('status_anggota');
+            $table->string('jenis_anggota');
             $table->timestamps();
         });
     }
@@ -25,8 +30,6 @@ class AddTimestampTodetailpeminjaman extends Migration
      */
     public function down()
     {
-        Schema::table('detail_peminjaman', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('table_anggota');
     }
 }

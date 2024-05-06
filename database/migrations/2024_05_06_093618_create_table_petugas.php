@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestapsTotablepengembalian extends Migration
+class CreateTablePetugas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,11 @@ class AddTimestapsTotablepengembalian extends Migration
      */
     public function up()
     {
-        Schema::table('pengembalian', function (Blueprint $table) {
+        Schema::create('petugas', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id');
+            // $table->integer('id_petugas');
+            $table->string('nama_petugas');
             $table->timestamps();
         });
     }
@@ -25,8 +29,6 @@ class AddTimestapsTotablepengembalian extends Migration
      */
     public function down()
     {
-        Schema::table('pengembaian', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('table_petugas');
     }
 }
